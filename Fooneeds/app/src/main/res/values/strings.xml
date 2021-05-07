@@ -6,4 +6,11 @@
     <string name="dont_have_account">Do not have an account?</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="send_reset_link">Send Reset Link</string>
+    <string name="text_forgotpassword">Please enter your email address. You will receive a link to create a new password via email.</string>
+    <string name="check_email">Check Your Email</string>
+    <string name="text_reset_email">Reset link has been sent to farrel@gmail.com</string>
+    <string name="back_to_login">Back To Login</string>
 </resources>

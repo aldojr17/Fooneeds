@@ -1,18 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/linearLayout">
 
-    <EditText
-        android:id="@+id/et_email2"
+    <TextView
+        android:id="@+id/tv_login"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/custom_input"
-        android:drawableStart="@drawable/profilepic"
-        android:drawablePadding="@dimen/input_padding"
-        android:ems="10"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:paddingStart="@dimen/input_padding" />
+        android:gravity="center"
+        android:text="@string/sign_up"
+        android:textAllCaps="true"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/profilepic"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/name"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/input_padding" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/email"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/input_padding" />
+
+        <EditText
+            android:id="@+id/et_confrim_password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/input_padding" />
+
+        <Button
+            android:id="@+id/btn_reset_link"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/sign_up"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="100dp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
