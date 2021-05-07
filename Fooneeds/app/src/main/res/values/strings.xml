@@ -43,4 +43,7 @@
     <string name="most_popular">Most Popular</string>
     <string name="see_more">See More</string>
     <string name="daily_discover">Daily Discover</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="text_edit_address">Address</string>
+    <string name="tap_to_change">Tap to Change</string>
 </resources>
