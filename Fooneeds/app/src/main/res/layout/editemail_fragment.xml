@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/linearLayout">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backbutton" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="@string/edit_email"
+        android:textAllCaps="false"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="start"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="end"
+            android:text="@string/text_edit_email" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/edit_user_email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding" />
+
+        <Button
+            android:id="@+id/btn_reset_link"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/text_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="100dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
