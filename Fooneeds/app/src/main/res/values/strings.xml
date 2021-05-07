@@ -30,7 +30,7 @@
     <string name="text_edit_current_password">Current Password</string>
     <string name="text_new_password">New Password</string>
     <string name="text_confirm_password">Confirm Password</string>
-    <string name="text_forgot_password">Forgot Password ?</string>
+    <string name="text_forgot_password">Forgot Password?</string>
     <string name="reset_password">Reset Password</string>
     <string name="text_reset_password">Please enter your new password</string>
     <string name="new_address">New Address</string>

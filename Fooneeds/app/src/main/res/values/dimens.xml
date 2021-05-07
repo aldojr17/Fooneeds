@@ -3,4 +3,15 @@
     <dimen name="input_margin">25dp</dimen>
     <dimen name="input_padding">15dp</dimen>
     <dimen name="title_size">25sp</dimen>
+    <dimen name="login_size">30sp</dimen>
+    <dimen name="button_size">18sp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="back_margin_top">15dp</dimen>
+    <dimen name="back_margin_left">20dp</dimen>
+    <dimen name="back_button_size">30dp</dimen>
+    <dimen name="button_radius">100dp</dimen>
+    <dimen name="login_margin">32dp</dimen>
+    <dimen name="layout_title_margin">48dp</dimen>
+    <dimen name="text_height">30dp</dimen>
+    <dimen name="button_height">60dp</dimen>
 </resources>
