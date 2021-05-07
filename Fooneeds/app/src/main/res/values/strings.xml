@@ -37,4 +37,10 @@
     <string name="text_street">Street</string>
     <string name="text_city">City</string>
     <string name="text_change_password">Change Password</string>
+    <string name="explore">Explore</string>
+    <string name="dogs">Dogs</string>
+    <string name="cats">Cats</string>
+    <string name="most_popular">Most Popular</string>
+    <string name="see_more">See More</string>
+    <string name="daily_discover">Daily Discover</string>
 </resources>
