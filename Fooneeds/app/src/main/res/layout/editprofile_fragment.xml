@@ -9,20 +9,20 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="@dimen/back_button_size"
+        android:layout_height="@dimen/back_button_size"
+        android:layout_marginLeft="@dimen/back_margin_left"
+        android:layout_marginTop="@dimen/back_margin_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backbutton" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
+        android:layout_width="@dimen/back_button_size"
+        android:layout_height="@dimen/back_button_size"
+        android:layout_marginTop="@dimen/back_margin_top"
+        android:layout_marginEnd="@dimen/back_margin_left"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/checklist" />
@@ -31,37 +31,47 @@
         android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="@dimen/login_margin"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="@string/edit_profile"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_dekat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login"
+        app:srcCompat="@drawable/profilepic_edit" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_kecil"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/tap_to_change"
+        android:textAlignment="center"
+        android:textColor="#2D9CDB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="@dimen/margin_dekat"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/profilepic_edit" />
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tap_to_change"
-            android:textAlignment="center"
-            android:textColor="#2D9CDB" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12">
 
         <EditText
             android:id="@+id/et_email"
@@ -69,14 +79,17 @@
             android:layout_height="60dp"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:background="@drawable/custom_input"
+            android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="@dimen/input_padding"
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/text_edit_name"
             android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/input_padding" />
+            android:paddingStart="@dimen/input_padding"
+            android:paddingEnd="@dimen/input_padding"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/et_email4"
@@ -84,14 +97,17 @@
             android:layout_height="60dp"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:background="@drawable/custom_input"
+            android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="@dimen/input_padding"
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/text_edit_email"
             android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/input_padding" />
+            android:paddingStart="@dimen/input_padding"
+            android:paddingEnd="@dimen/input_padding"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/et_email5"
@@ -99,14 +115,17 @@
             android:layout_height="60dp"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:background="@drawable/custom_input"
+            android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="@dimen/input_padding"
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/text_edit_phone_number"
             android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/input_padding" />
+            android:paddingStart="@dimen/input_padding"
+            android:paddingEnd="@dimen/input_padding"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/et_email6"
@@ -114,14 +133,17 @@
             android:layout_height="60dp"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:background="@drawable/custom_input"
+            android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="@dimen/input_padding"
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/text_edit_address"
             android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/input_padding" />
+            android:paddingStart="@dimen/input_padding"
+            android:paddingEnd="@dimen/input_padding"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/et_email7"
@@ -131,27 +153,33 @@
             android:layout_marginRight="@dimen/input_margin"
             android:layout_marginBottom="@dimen/input_margin"
             android:background="@drawable/custom_input"
+            android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="@dimen/input_padding"
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/text_edit_gender"
             android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/input_padding" />
+            android:paddingStart="@dimen/input_padding"
+            android:paddingEnd="@dimen/input_padding"
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/et_email8"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginTop="@dimen/layout_title_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
             android:background="@drawable/custom_input"
+            android:drawableRight="@drawable/arrow_right"
             android:drawablePadding="@dimen/input_padding"
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/text_change_password"
             android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/input_padding" />
+            android:paddingStart="@dimen/input_padding"
+            android:paddingRight="@dimen/input_padding"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

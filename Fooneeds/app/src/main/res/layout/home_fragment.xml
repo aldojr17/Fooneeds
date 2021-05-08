@@ -25,6 +25,7 @@
                 android:drawableStart="@drawable/search"
                 android:drawablePadding="10dp"
                 android:ems="10"
+                android:fontFamily="@font/montserrat"
                 android:inputType="textPersonName"
                 android:paddingStart="@dimen/input_padding"
                 android:text="Name" />
@@ -65,6 +66,7 @@
                 android:drawableStart="@drawable/dog"
                 android:drawablePadding="10dp"
                 android:ems="10"
+                android:fontFamily="@font/montserrat"
                 android:inputType="none"
                 android:paddingStart="@dimen/input_padding"
                 android:text="@string/dogs" />
@@ -79,6 +81,7 @@
                 android:drawableStart="@drawable/cat"
                 android:drawablePadding="10dp"
                 android:ems="10"
+                android:fontFamily="@font/montserrat"
                 android:inputType="none"
                 android:paddingStart="@dimen/input_padding"
                 android:text="@string/cats" />

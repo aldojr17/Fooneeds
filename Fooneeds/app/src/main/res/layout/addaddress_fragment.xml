@@ -53,7 +53,7 @@
         <EditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
             android:layout_marginBottom="@dimen/input_margin"
@@ -79,7 +79,7 @@
         <EditText
             android:id="@+id/et_email2"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
             android:layout_marginBottom="@dimen/input_margin"
