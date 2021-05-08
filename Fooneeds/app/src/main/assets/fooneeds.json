@@ -1,0 +1,156 @@
+[
+   {
+      "id":1,
+      "name":"PEDIGREE",
+      "category":"Dog",
+      "products":[
+         {
+            "id":1,
+            "name":"PEDIGREE PUPPY™ Chicken & Vegetable Flavor Dry Dog Food",
+            "type":"dry",
+            "age":"puppy",
+            "cover":"https://www.pedigree.com/images/default-source/products/dry/pedigree-dry-dog-food-puppy-chicken-vegetable-flavor-front.tmb-400max.jpg?sfvrsn=6b3f6349_0",
+            "price":100000,
+            "description":"PEDIGREE PUPPY™ Growth and Protection Chicken & Vegetable Flavor Dog Food is formulated to help your pup keep up with the big dogs. This puppy formula is made with DHA for healthy brain development, plus calcium and phosphorus for healthy teeth and strong bones. With PEDIGREE PUPPY™ Food, it's never been easier to give your growing dog a complete and balanced meal in a savory kibble they will love.",
+	        "stock":18
+         },
+         {
+            "id":2,
+            "name":"PEDIGREE PUPPY™ Growth & Protection Grilled Steak & Vegetable Flavor Dry Dog Food",
+            "type":"dry",
+            "age":"puppy",
+            "cover":"https://www.pedigree.com/images/default-source/products/dry/pedigree-puppy-growth-protection-dry-dog-food-grilled-steak-vegetable-flavor-front.tmb-400max.jpg?sfvrsn=773a6349_0",
+            "price":90000,
+            "description":"Give your puppy a head start with PEDIGREE PUPPY™ Growth & Protection Dry Dog Food. This delectable puppy kibble features DHA to support healthy brain development, and key nutrients similar to mother’s milk. Made in the USA with the world’s finest ingredients, this dry dog food is perfect to get your puppy’s tail wagging. This delicious puppy dog food also supports development of strong bones and teeth. With 100% complete and balanced nutrition and no high fructose corn syrup, artificial flavors, and no added sugars, your puppy will be able to grow and keep up with the big dogs. So feed your puppy PEDIGREE®, and feed the good.",
+	        "stock":15
+         },
+         {
+            "id":3,
+            "name":"PEDIGREE® Adult Roasted Chicken, Rice & Vegetable Flavor Dry Dog Food",
+            "type":"dry",
+            "age":"adult",
+            "cover":"https://www.pedigree.com/images/default-source/products/dry/front-adult-roasted-chicken-rice-vegtable.tmb-400max.png?sfvrsn=1b506549_0",
+            "price":95000,
+            "description":"PEDIGREE® Adult Complete Nutrition Roasted Chicken, Rice & Vegetable Flavor Dry Dog Food is formulated to give dogs all of the energy and nourishment they need to continue living life to the fullest. This chicken-flavor dog food is packed with B vitamins, zinc and omega-6 fatty acid to help keep adult dogs looking their best. PEDIGREE® Dry Dog Food also contains leading levels of the antioxidant, vitamin E, to help keep adult dogs' immune systems strong. Plus, this balanced dog food features our special fiber blend, which helps promote healthy digestion, to keep yard patrol in control. Feed your dog this oral care kibble to help keep teeth clean and give them a great taste.",
+	        "stock":12
+         },
+         {
+            "id":4,
+            "name":"PEDIGREE® Small Dog Grilled Steak and Vegetable Flavor Dry Dog Food",
+            "type":"dry",
+            "age":"adult",
+            "cover":"https://www.pedigree.com/images/default-source/products/dry/pedigree-dry-dog-food-small-dog-grilled-steak-vegetable-flavor-front.tmb-400max.jpg?sfvrsn=d63e6349_0",
+            "price":105000,
+            "description":"Even small dogs need a large amount of nutrition. That's why every bag of PEDIGREE®  Small Dog Grilled Steak & Vegetable Flavor Dry Dog Food has the vitamins and minerals small breed dogs need to be healthy and happy. Made with whole grains, protein and omega-6 fatty acids, PEDIGREE® Small Dog Food helps your dog look and feel their best. Best of all, our oral care kibble gently clean their teeth with every bite.",
+	        "stock":16
+         },
+         {
+            "id":5,
+            "name":"PEDIGREE PUPPY™ Complete Nutrition - Chopped Ground Dinner with Lamb & Rice Wet Dog Food",
+            "type":"wet",
+            "age":"puppy",
+            "cover":"https://www.pedigree.com/images/default-source/Products/Wet/pedigree_puppy_chopped_ground_dinner_lamb_rice.tmb-400max.png?sfvrsn=6e286e49_5",
+            "price":85000,
+            "description":"PEDIGREE PUPPY™ Complete Nutrition is high-protein puppy food that gives your puppy the 100% complete and balanced nutrition he needs to help him grow up happy and healthy. With irresistible meaty flavors and high quality proteins to support muscle development in young pups, your puppy won’t want to eat anything else – until he grows into a big puppy, of course.",
+	        "stock":10
+         },
+         {
+            "id":6,
+            "name":"PEDIGREE PUPPY™ Complete Nutrition - Chopped Ground Dinner with Chicken & Beef Wet Dog Food",
+            "type":"wet",
+            "age":"puppy",
+            "cover":"https://www.pedigree.com/images/default-source/products/wet/pedigree-choppedgrounddinner-puppy-chicken-beef.tmb-400max.png?sfvrsn=2dec6049_1",
+            "price":75000,
+            "description":"A new wet dog food recipe featuring real beef and hearty inclusions. Packed with high-quality ingredients, formulated to provide your dog complete and balanced nutrition. A meaty Homestyle taste your dog will love. Explore our other delicious wet dog food recipes below, featuring real beef and hearty inclusions.",
+	        "stock":9
+         },
+         {
+            "id":7,
+            "name":"PEDIGREE® TRADITIONAL GROUND DINNER™ With Chicken and With Beef 24ct Wet Dog Food",
+            "type":"wet",
+            "age":"adult",
+            "cover":"https://www.pedigree.com/images/default-source/products/wet/pedigree-traditional-ground-dinner-with-chicken-and-with-beef-13-2oz-24ct-mvmp-front-min.tmb-400max.png?sfvrsn=bb396349_0",
+            "price":80000,
+            "description":"Your best buddy deserves a hearty meal, and PEDIGREE® Chopped Ground Dinner With Chicken and With Beef Adult Wet Dog Food gives them the flavors they crave with the nutrition they need. A meaty, ground recipe made with real chicken or beef, our delicious dog food provides the perfect balance of oils and minerals for healthy skin and a glistening coat. Each recipe is 100% complete and balanced, so you know they are getting the most from their meals. Help your dog grow happy and healthy with PEDIGREE® Chopped Ground Dinner Wet Dog Food.",
+	        "stock":10
+         },
+         {
+            "id":8,
+            "name":"PEDIGREE® TRADITIONAL GROUND DINNER™ 30ct Wet Dog Food",
+            "type":"wet",
+            "age":"adult",
+            "cover":"https://www.pedigree.com/images/default-source/products/wet/pedigree-pouch-traditional-ground-dinner-30ct-mvmp-angle-min.tmb-400max.png?sfvrsn=b7396349_0",
+            "price":65000,
+            "description":"Your dog’s mealtime is the most exciting part of their day… and when you add PEDIGREE® High Protein Canned Wet Dog Food to their bowl, you can make it even better. Perfectly cut pieces with real chicken and turkey or beef and lamb in a delicious gravy with ingredients they can’t resist, to help provide the energy they need to play. Want to mix it up? Add PEDIGREE® High Protein Soft Dog Food to their favorite kibble, or use as a topper for the ultimate mealtime experience. Dogs bring out the good in us. PEDIGREE® brings out the good in them. Feed the good.",
+	        "stock":5
+         },
+         {
+            "id":9,
+            "name":"PEDIGREE® DENTASTIX™ Original Small/Medium Dog Treats",
+            "type":"treat",
+            "age":"adult",
+            "cover":"https://www.pedigree.com/images/default-source/Products/Treats/dentastix_original_smallmedium2.tmb-400max.png?sfvrsn=4ed66149_5",
+            "price":70000,
+            "description":"Whether your dog is medium-sized or small, they will love our delicious DENTASTIX™ Original Treats. These treats are clinically proven to promote oral health by reducing plaque and tartar buildup. Plus, their chewy texture and patented design are practically irresitable.",
+	        "stock":7
+         },
+         {
+            "id":10,
+            "name":"PEDIGREE® DENTASTIX™ Original Large Dog Treats",
+            "type":"treat",
+            "age":"adult",
+            "cover":"https://www.pedigree.com/images/default-source/Products/Treats/dentastix_original_large.tmb-400max.png?sfvrsn=a9e96149_5",
+            "price":90000,
+            "description":"DENTASTIX™ Original Treats are the delicious oral care treat that large dogs like yours will love to eat – and you’ll love to treat. Their chewy texture and patented design is clinically proven to reduce plaque and tartar buildup, so treat time promotes oral health too!",
+	        "stock":9
+         }
+      ]
+   },
+   {
+      "id":2,
+      "name":"Royal Canin",
+      "category":"Cat",
+      "products":[
+         {
+            "id":1,
+            "name":"WHISKAS® KITTEN - CHICKEN & TURKEY FLAVOR",
+            "type":"dry",
+            "age":"all",
+            "cover":"https://www.whiskas.com/Content/images/products/large/kitten.png",
+            "price":150000,
+            "description":"WHISKAS® KITTEN Chicken & Turkey Flavor recipe provides 100% complete and balanced nutrition for growth, gestation and lactation. It’s protein-rich for lean muscles, has added calcium for strong bones, and DHA for healthy brain development. The best part? Kittens love it!",
+	        "stock":9
+         },
+         {
+            "id":2,
+            "name":"WHISKAS® SEAFOOD SELECTIONS™ SALMON & SHRIMP FLAVOR",
+            "type":"dry",
+            "age":"all",
+            "cover":"https://www.whiskas.com/Content/images/products/large/seafood-selections.png",
+            "price":130000,
+            "description":"WHISKAS® SEAFOOD SELECTIONS™ has the perfect mix of salmon and shrimp flavors that your cat won't be able to resist. Plus, our recipe is protein-rich for lean muscles, contains antioxidants for a healthy immune system, and helps support healthy joints.",
+	        "stock":3
+         },
+         {
+            "id":3,
+            "name":"WHISKAS® PURRFECTLY® CHICKEN CHICKEN & BEEF ENTRÉE",
+            "type":"wet",
+            "age":"all",
+            "cover":"https://www.whiskas.com/Content/images/products/large/chicken-beef.png",
+            "price":110000,
+            "description":"What do you get when you take real cuts of tender chicken and beef in natural juices? The taste cats adore! And you’ll be just as satisfied knowing the convenient, easy-to-serve FLAVOR-LOCK™ pouch seals in freshness.",
+	        "stock":7
+         },
+         {
+            "id":4,
+            "name":"WHISKAS® PURRFECTLY® FISH TUNA ENTRÉE",
+            "type":"wet",
+            "age":"all",
+            "cover":"https://www.whiskas.com/Content/images/products/large/tuna.png",
+            "price":105000,
+            "description":"Your cat will go crazy over the chunks and flakes of real tuna found in this entrée! It’s prepared in natural juices and nothing short of mouthwatering. Plus, the FLAVOR-LOCK ™ pouch seals in freshness and makes serving quick and easy.",
+	        "stock":8
+         }
+      ]
+   }
+]
