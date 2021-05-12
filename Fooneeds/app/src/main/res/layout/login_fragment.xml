@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/linearLayout">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_login"
@@ -30,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_login">
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/et_emailLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
@@ -47,7 +46,7 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/et_password"
+            android:id="@+id/et_passwordLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
@@ -59,12 +58,12 @@
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/password"
-            android:inputType="textPassword|textEmailAddress"
+            android:inputType="textPassword"
             android:paddingStart="@dimen/input_padding"
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/btn_reset_link"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
@@ -80,7 +79,7 @@
             app:cornerRadius="@dimen/button_radius" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_ForgotPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/input_margin"
@@ -110,7 +109,7 @@
                 android:textSize="@dimen/text_size" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tv_SignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

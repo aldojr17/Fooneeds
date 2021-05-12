@@ -1,0 +1,96 @@
+package com.dap.fooneeds.fragment;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.dap.fooneeds.R;
+import com.dap.fooneeds.databinding.ForgotpasswordFragmentBinding;
+import com.dap.fooneeds.entity.User;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
+public class ForgotPasswordFragment extends Fragment {
+
+    private ForgotpasswordFragmentBinding forgotpasswordFragmentBinding;
+    private static ForgotPasswordFragment forgotPasswordFragment;
+    private List<User> users;
+
+    private ForgotPasswordFragment() {
+
+    }
+
+    public static ForgotPasswordFragment newInstance() {
+        if (forgotPasswordFragment == null) {
+            forgotPasswordFragment = new ForgotPasswordFragment();
+        }
+        return forgotPasswordFragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        try {
+            users = fetchUser();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        forgotpasswordFragmentBinding.btnResetLink.setOnClickListener(v -> {
+            if(!forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim().equals("")){
+                if(checkUser(forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim())){
+                    Bundle bundle = new Bundle();
+                    bundle.putString(User.USER_EMAIL, forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim());
+                    CheckYourEmailFragment checkYourEmailFragment = CheckYourEmailFragment.newInstance();
+                    checkYourEmailFragment.setArguments(bundle);
+
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.loginContainer, checkYourEmailFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }else{
+                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        forgotpasswordFragmentBinding = ForgotpasswordFragmentBinding.inflate(inflater, container, false);
+        return forgotpasswordFragmentBinding.getRoot();
+    }
+
+    private List<User> fetchUser() throws IOException {
+        InputStream inputStream = getActivity().getAssets().open("user.json");
+        JsonReader reader = new JsonReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        Gson gson = new Gson();
+        return Arrays.asList(gson.fromJson(reader, User[].class));
+    }
+
+    private boolean checkUser(String email){
+        for(User u : users){
+            if(u.getEmail().equals(email)){
+                return true;
+            }
+        }
+        return false;
+    }
+}

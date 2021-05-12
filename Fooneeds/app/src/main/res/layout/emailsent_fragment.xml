@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/linearLayout">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/tv_checkEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_title_margin"
@@ -27,10 +26,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_dekat"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login">
+        app:layout_constraintTop_toBottomOf="@+id/tv_checkEmail">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tv_emailSent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -52,7 +51,7 @@
             app:srcCompat="@drawable/checkemail" />
 
         <Button
-            android:id="@+id/btn_reset_link"
+            android:id="@+id/btnBackToLogin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
