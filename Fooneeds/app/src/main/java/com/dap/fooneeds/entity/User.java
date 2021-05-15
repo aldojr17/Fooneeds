@@ -17,6 +17,9 @@ public class User implements Parcelable {
     @SerializedName("password")
     private String password;
 
+    public User() {
+    }
+
     protected User(Parcel in) {
         id = in.readInt();
         name = in.readString();

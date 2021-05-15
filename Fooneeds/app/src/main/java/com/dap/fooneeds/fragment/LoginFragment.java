@@ -1,5 +1,6 @@
 package com.dap.fooneeds.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,11 +17,27 @@ import com.dap.fooneeds.R;
 import com.dap.fooneeds.databinding.LoginFragmentBinding;
 import com.dap.fooneeds.entity.User;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,17 +74,36 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentBinding = LoginFragmentBinding.inflate(inflater, container, false);
+        String email = fragmentBinding.etEmailLogin.getText().toString().trim();
+        String password = fragmentBinding.etPasswordLogin.getText().toString().trim();
         fragmentBinding.btnLogin.setOnClickListener(v -> {
-            if(!fragmentBinding.etEmailLogin.getText().toString().trim().equals("") &&
-                    !fragmentBinding.etPasswordLogin.getText().toString().trim().equals("")){
-                if(checkUser(fragmentBinding.etEmailLogin.getText().toString().trim()
-                        , fragmentBinding.etPasswordLogin.getText().toString().trim())){
+            if(!email.equals("") && !password.equals("")){
+                if(checkUser(email, password)){
 //                    DetailFragment detailFragment = DetailFragment.newInstance();
 //
 //                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                    transaction.replace(R.id.loginContainer, detailFragment);
 //                    transaction.addToBackStack(null);
 //                    transaction.commit();
+
+//                    String jsonFileString = getJsonFromAssets(getContext(), "user.json");
+//                    System.out.println(jsonFileString);
+//
+//                    Gson gson = new Gson();
+//                    List<User> users = gson.fromJson(jsonFileString, new TypeToken<List<User>>() {}.getType());
+
+//                    User user = new User();
+//                    // set properties
+//                    user.setId(3);
+//                    user.setName("test");
+//                    user.setEmail("test@gmail.com");
+//                    user.setPassword("qwe");
+//                    users.add(user);
+//
+//                    String json = gson.toJson(users);
+//                    System.out.println(json);
+
+
                     Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                 } else{
                     Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
@@ -82,6 +118,15 @@ public class LoginFragment extends Fragment {
 
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.loginContainer, forgotPasswordFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
+        fragmentBinding.tvSignUp.setOnClickListener(v -> {
+            SignUpFragment signUpFragment = SignUpFragment.newInstance();
+
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.loginContainer, signUpFragment);
             transaction.addToBackStack(null);
             transaction.commit();
         });
@@ -103,4 +148,23 @@ public class LoginFragment extends Fragment {
         }
         return false;
     }
+
+//    public String getJsonFromAssets(Context context, String fileName) {
+//        String jsonString;
+//        try {
+//            InputStream is = context.getAssets().open(fileName);
+//
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            is.read(buffer);
+//            is.close();
+//
+//            jsonString = new String(buffer, "UTF-8");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//
+//        return jsonString;
+//    }
 }
