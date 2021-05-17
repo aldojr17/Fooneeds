@@ -74,4 +74,16 @@
     <string name="price_tab">Price</string>
     <string name="empty_cart">Your shopping cart is empty</string>
     <string name="shopping_cart">Shopping Cart</string>
+    <string name="bank_transfer">Bank Transfer</string>
+    <string name="choose_bank">Choose Bank</string>
+    <string name="BNI">BNI</string>
+    <string name="BCA">BCA</string>
+    <string name="MANDIRI">MANDIRI</string>
+    <string name="BRI">BRI</string>
+    <string name="OCBCNISP">OCBC NISP</string>
+    <string name="checkout">Checkout</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="shipping">Shipping</string>
+    <string name="total">Total</string>
 </resources>
