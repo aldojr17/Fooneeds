@@ -48,20 +48,16 @@ public class SignUpFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String name = signupFragmentBinding.etNameSignUp.getText().toString().trim();
-        String email = signupFragmentBinding.etEmailSignUp.getText().toString().trim();
-        String password = signupFragmentBinding.etPasswordSignUp.getText().toString().trim();
-        String confirmPassword = signupFragmentBinding.etConfirmPasswordSignUp.getText().toString().trim();
         signupFragmentBinding.btnSignUp.setOnClickListener(v -> {
-            if(!name.equals("") && !email.equals("") && !password.equals("") && !confirmPassword.equals("")){
-                if(!password.equals(confirmPassword)){
+            if(!signupFragmentBinding.etNameSignUp.getText().toString().trim().equals("") && !signupFragmentBinding.etEmailSignUp.getText().toString().trim().equals("") && !signupFragmentBinding.etPasswordSignUp.getText().toString().trim().equals("") && !signupFragmentBinding.etConfirmPasswordSignUp.getText().toString().trim().equals("")){
+                if(!signupFragmentBinding.etPasswordSignUp.getText().toString().trim().equals(signupFragmentBinding.etConfirmPasswordSignUp.getText().toString().trim())){
                     Toast.makeText(getContext(), "Password not equal!", Toast.LENGTH_SHORT).show();
                 }else{
                     User user = new User();
                     user.setId(users.size());
-                    user.setName(name);
-                    user.setEmail(email);
-                    user.setPassword(password);
+                    user.setName(signupFragmentBinding.etNameSignUp.getText().toString().trim());
+                    user.setEmail(signupFragmentBinding.etEmailSignUp.getText().toString().trim());
+                    user.setPassword(signupFragmentBinding.etPasswordSignUp.getText().toString().trim());
                     users.add(user);
                     Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                 }

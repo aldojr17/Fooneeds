@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="@dimen/back_button_size"
+        android:layout_height="@dimen/back_button_size"
+        android:layout_marginStart="@dimen/back_margin_left"
+        android:layout_marginTop="@dimen/back_margin_top"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backbutton" />
+
+    <TextView
+        android:id="@+id/tv_editSpesific"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:text="@string/edit_email"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/emailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_editSpesific">
+
+        <TextView
+            android:id="@+id/tv_editEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_edit_email"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/edit_user_email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnConfirmEditEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/text_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="bold"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="@dimen/button_radius" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/nameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_editSpesific">
+
+        <TextView
+            android:id="@+id/tv_editName"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_gravity="start"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_edit_name"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_editName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/edit_user_name"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnConfirmEditName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/text_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="bold"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="@dimen/button_radius" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/genderLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_editSpesific">
+
+        <TextView
+            android:id="@+id/tv_editGender"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_gravity="start"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_edit_gender"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_editGender"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/edit_user_gender"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnConfirmEditGender"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/text_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="bold"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="@dimen/button_radius" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/phoneLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_editSpesific">
+
+        <TextView
+            android:id="@+id/tv_editPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_gravity="start"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_edit_phone_number"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_editPhone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@string/edit_user_phone_number"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnConfirmEditPhone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/text_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="bold"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="@dimen/button_radius" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/newAddressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_editSpesific">
+
+        <TextView
+            android:id="@+id/tv_addStreet"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_street"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_addStreet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_addCity"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_city"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_addCity"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_weight="1"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnConfirmAddAddress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/text_confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="bold"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="@dimen/button_radius" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/changePasswordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_editSpesific">
+
+        <TextView
+            android:id="@+id/tv_currentPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_edit_current_password"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_currentPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/btnForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_gravity="end"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat"
+            android:gravity="end"
+            android:text="@string/text_forgot_password"
+            android:textColor="@color/blue_2" />
+
+        <TextView
+            android:id="@+id/tv_newPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_gravity="start"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_new_password"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_newPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_weight="1"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_confirmPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:text="@string/text_confirm_password"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/et_confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_weight="1"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="@dimen/input_padding"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/input_padding"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btnChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_marginRight="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/text_change_password"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="bold"
+            app:backgroundTint="@color/uid_yellow"
+            app:cornerRadius="@dimen/button_radius" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

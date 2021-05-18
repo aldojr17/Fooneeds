@@ -7,17 +7,26 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/silang" />
+        android:id="@+id/btnBack"
+        android:layout_width="@dimen/back_button_size"
+        android:layout_height="@dimen/back_button_size"
+        android:layout_marginStart="@dimen/back_margin_left"
+        android:layout_marginTop="@dimen/back_margin_top"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backbutton" />
 
     <TextView
-        android:id="@+id/textView34"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
         android:text="@string/shopping_cart"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,17 +41,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView10"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:srcCompat="@drawable/shoppingcartplus" />
+            android:layout_height="150dp"
+            android:layout_marginBottom="@dimen/input_margin"
+            app:srcCompat="@drawable/shoppingcart" />
 
         <TextView
-            android:id="@+id/textView19"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
             android:text="@string/empty_cart"
-            android:textAlignment="center" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size" />
 
     </LinearLayout>
 

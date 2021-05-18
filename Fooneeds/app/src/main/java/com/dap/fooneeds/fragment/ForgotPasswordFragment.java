@@ -50,12 +50,11 @@ public class ForgotPasswordFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String email = forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim();
         forgotpasswordFragmentBinding.btnResetLink.setOnClickListener(v -> {
-            if(!email.equals("")){
-                if(checkUser(email)){
+            if(!forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim().equals("")){
+                if(checkUser(forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim())){
                     Bundle bundle = new Bundle();
-                    bundle.putString(User.USER_EMAIL, email);
+                    bundle.putString(User.USER_EMAIL, forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim());
                     CheckYourEmailFragment checkYourEmailFragment = CheckYourEmailFragment.newInstance();
                     checkYourEmailFragment.setArguments(bundle);
 

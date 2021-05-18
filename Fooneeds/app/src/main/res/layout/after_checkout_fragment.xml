@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="@dimen/back_margin_left"
+        android:layout_height="@dimen/back_margin_left"
+        android:layout_marginStart="@dimen/back_margin_left"
+        android:layout_marginTop="@dimen/back_margin_top"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/silang" />
+
+    <LinearLayout
+        android:id="@+id/paymentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_paymentInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/payment"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_size" />
+
+        <TextView
+            android:id="@+id/tv_vaNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/va"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_va"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/va_number"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_totalPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/TP"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_paymentAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/TP_Amount"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:gravity="start"
+            android:paddingLeft="@dimen/input_padding"
+            android:text="@string/instructions"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="normal"
+            app:lineHeight="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/thankYouLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_title_margin"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView17"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/bigchecklist" />
+
+        <TextView
+            android:id="@+id/tv_paymentInstructions2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/input_margin"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/thankyou"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/login_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_vaNumber4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/input_padding"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/completed"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_size"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

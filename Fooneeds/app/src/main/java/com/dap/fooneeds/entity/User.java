@@ -83,4 +83,9 @@ public class User implements Parcelable {
         dest.writeString(email);
         dest.writeString(password);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

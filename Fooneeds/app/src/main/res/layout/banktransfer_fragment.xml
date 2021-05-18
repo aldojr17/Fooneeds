@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/linearLayout">
+    android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/btnBack"
         android:layout_width="@dimen/back_button_size"
         android:layout_height="@dimen/back_button_size"
         android:layout_marginLeft="@dimen/back_margin_left"
@@ -18,7 +17,7 @@
         app:srcCompat="@drawable/backbutton" />
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/tv_bankTransfer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_title_margin"
@@ -37,10 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/layout_title_margin"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login">
+        app:layout_constraintTop_toBottomOf="@+id/tv_bankTransfer">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tv_chooseBank"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/text_height"
             android:layout_marginLeft="@dimen/input_margin"
@@ -51,28 +50,28 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/et_email"
+            android:id="@+id/btnBNI"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:background="@drawable/cutom_bank"
             android:drawablePadding="@dimen/input_padding"
             android:ems="10"
             android:fontFamily="@font/montserrat"
-            android:text="@string/BNI"
             android:inputType="none"
             android:paddingStart="@dimen/input_padding"
+            android:text="@string/BNI"
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/et_email9"
+            android:id="@+id/btnBCA"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:layout_weight="1"
             android:background="@drawable/cutom_bank"
             android:drawablePadding="@dimen/input_padding"
@@ -84,12 +83,12 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/et_email10"
+            android:id="@+id/btnMandiri"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:layout_weight="1"
             android:background="@drawable/cutom_bank"
             android:drawablePadding="@dimen/input_padding"
@@ -101,12 +100,12 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/et_email11"
+            android:id="@+id/btnBRI"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
             android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginBottom="@dimen/margin_kecil"
             android:layout_weight="1"
             android:background="@drawable/cutom_bank"
             android:drawablePadding="@dimen/input_padding"
@@ -118,7 +117,7 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/et_email12"
+            android:id="@+id/btnOCBC"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"
@@ -135,7 +134,7 @@
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/btn_reset_link"
+            android:id="@+id/btnConfirmBank"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginLeft="@dimen/input_margin"

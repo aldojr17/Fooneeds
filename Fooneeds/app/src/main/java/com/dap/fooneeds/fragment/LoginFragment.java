@@ -74,11 +74,9 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentBinding = LoginFragmentBinding.inflate(inflater, container, false);
-        String email = fragmentBinding.etEmailLogin.getText().toString().trim();
-        String password = fragmentBinding.etPasswordLogin.getText().toString().trim();
         fragmentBinding.btnLogin.setOnClickListener(v -> {
-            if(!email.equals("") && !password.equals("")){
-                if(checkUser(email, password)){
+            if(!fragmentBinding.etEmailLogin.getText().toString().trim().equals("") && !fragmentBinding.etPasswordLogin.getText().toString().trim().equals("")){
+                if(checkUser(fragmentBinding.etEmailLogin.getText().toString().trim(), fragmentBinding.etPasswordLogin.getText().toString().trim())){
 //                    DetailFragment detailFragment = DetailFragment.newInstance();
 //
 //                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -109,7 +107,7 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
                 }
             } else{
-                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please fill the field!", Toast.LENGTH_SHORT).show();
             }
         });
 
