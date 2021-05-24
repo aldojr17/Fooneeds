@@ -14,9 +14,9 @@
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/back_button_size"
-            android:layout_marginLeft="@dimen/back_margin_left"
-            android:layout_marginTop="@dimen/back_margin_top"
+            android:layout_height="@dimen/size_button_top"
+            android:layout_marginLeft="@dimen/margin_start_button_top"
+            android:layout_marginTop="@dimen/margin_top_button_top"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/backbutton" />
@@ -85,19 +85,19 @@
         <Button
             android:id="@+id/btn_reset_link2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginLeft="@dimen/input_margin"
+            android:layout_height="@dimen/height_input_button"
+            android:layout_marginLeft="@dimen/margin_input_left_right_bottom"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="@dimen/input_margin"
-            android:layout_marginBottom="@dimen/input_margin"
+            android:layout_marginRight="@dimen/margin_input_left_right_bottom"
+            android:layout_marginBottom="@dimen/margin_input_left_right_bottom"
             android:fontFamily="@font/montserrat"
             android:text="@string/add_to_cart"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="@dimen/button_size"
+            android:textSize="@dimen/text_size_button"
             android:textStyle="bold"
             app:backgroundTint="@color/uid_yellow"
-            app:cornerRadius="@dimen/button_radius" />
+            app:cornerRadius="@dimen/radius_button" />
 
     </LinearLayout>
 </ScrollView>

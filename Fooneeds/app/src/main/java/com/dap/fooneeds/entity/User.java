@@ -7,21 +7,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class User implements Parcelable {
 
-    public static final String USER_EMAIL = "user_email";
-    @SerializedName("id")
-    private int id;
-    @SerializedName("name")
+    public static final String EDIT_USER = "edit";
+    public static final String USER_EMAIL = "email";
+    public static final String USER_DATA = "user";
+    private String id;
     private String name;
-    @SerializedName("email")
     private String email;
-    @SerializedName("password")
     private String password;
+    private String phoneNumber;
+    private Address[] addresses;
+    private String gender;
 
     public User() {
     }
 
     protected User(Parcel in) {
-        id = in.readInt();
+        id = in.readString();
         name = in.readString();
         email = in.readString();
         password = in.readString();
@@ -39,11 +40,11 @@ public class User implements Parcelable {
         }
     };
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -71,6 +72,30 @@ public class User implements Parcelable {
         this.password = password;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Address[] getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Address[] addresses) {
+        this.addresses = addresses;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -78,7 +103,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeString(name);
         dest.writeString(email);
         dest.writeString(password);

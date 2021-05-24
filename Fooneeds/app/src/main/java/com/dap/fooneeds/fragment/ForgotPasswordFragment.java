@@ -14,6 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 import com.dap.fooneeds.R;
 import com.dap.fooneeds.databinding.ForgotpasswordFragmentBinding;
 import com.dap.fooneeds.entity.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -29,7 +35,8 @@ public class ForgotPasswordFragment extends Fragment {
 
     private ForgotpasswordFragmentBinding forgotpasswordFragmentBinding;
     private static ForgotPasswordFragment forgotPasswordFragment;
-    private List<User> users;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
 
     private ForgotPasswordFragment() {
 
@@ -45,26 +52,33 @@ public class ForgotPasswordFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        try {
-            users = fetchUser();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("users");
         forgotpasswordFragmentBinding.btnResetLink.setOnClickListener(v -> {
             if(!forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim().equals("")){
-                if(checkUser(forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim())){
-                    Bundle bundle = new Bundle();
-                    bundle.putString(User.USER_EMAIL, forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim());
-                    CheckYourEmailFragment checkYourEmailFragment = CheckYourEmailFragment.newInstance();
-                    checkYourEmailFragment.setArguments(bundle);
+                Query query = databaseReference.orderByChild("email").equalTo(forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString());
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Bundle bundle = new Bundle();
+                            bundle.putString(User.USER_EMAIL, forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim());
+                            CheckYourEmailFragment checkYourEmailFragment = CheckYourEmailFragment.newInstance();
+                            checkYourEmailFragment.setArguments(bundle);
 
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.loginContainer, checkYourEmailFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                }else{
-                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
-                }
+                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                            transaction.replace(R.id.loginContainer, checkYourEmailFragment);
+                            transaction.commit();
+                        }else{
+                            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }else{
                 Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
@@ -76,21 +90,5 @@ public class ForgotPasswordFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         forgotpasswordFragmentBinding = ForgotpasswordFragmentBinding.inflate(inflater, container, false);
         return forgotpasswordFragmentBinding.getRoot();
-    }
-
-    private List<User> fetchUser() throws IOException {
-        InputStream inputStream = getActivity().getAssets().open("user.json");
-        JsonReader reader = new JsonReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        Gson gson = new Gson();
-        return Arrays.asList(gson.fromJson(reader, User[].class));
-    }
-
-    private boolean checkUser(String email){
-        for(User u : users){
-            if(u.getEmail().equals(email)){
-                return true;
-            }
-        }
-        return false;
     }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "405260952760",
+    "project_id": "fooneeds-337f0",
+    "storage_bucket": "fooneeds-337f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405260952760:android:798d386d04ebdcae37004d",
+        "android_client_info": {
+          "package_name": "com.dap.fooneeds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405260952760-3ade46kdkfbgi6lhsff5etd45ktsprh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJChIL5lF2zHCw0CpehoWXcaWz8QTcCLs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405260952760-3ade46kdkfbgi6lhsff5etd45ktsprh8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

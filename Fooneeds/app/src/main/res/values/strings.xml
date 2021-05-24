@@ -86,4 +86,13 @@
     <string name="subtotal">Subtotal</string>
     <string name="shipping">Shipping</string>
     <string name="total">Total</string>
+    <string name="error_login">Please fill email and password</string>
+    <string name="text_readMore">Read More</string>
+    <string name="profile">My Profile</string>
+    <string name="logout">Log out</string>
+    <string name="edit_address">Edit Address</string>
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>
