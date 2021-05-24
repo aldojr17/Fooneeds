@@ -95,13 +95,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
-//                    System.out.println(ds);
-                    DatabaseReference keyReference = databaseReference.child("foods").child(ds.getKey()).child("products");
+                    DatabaseReference keyReference = databaseReference.child(ds.getKey()).child("products");
                     keyReference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                                System.out.println(dataSnapshot.getValue());
                                 Food food = new Food();
                                 food.setId(dataSnapshot.child("id").getValue(Integer.class));
                                 food.setAge(dataSnapshot.child("age").getValue(String.class));
@@ -114,6 +112,7 @@ public class HomeFragment extends Fragment {
 
                                 foods.add(food);
                             }
+                            refreshData(foods);
                         }
 
                         @Override
@@ -135,9 +134,23 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         user = mAuth.getCurrentUser();
+    }
+
+    private void refreshData(ArrayList<Food> foodArrayList){
+        foodAdapter = new FoodAdapter(foodArrayList, food -> {
+            Toast.makeText(getContext(), food.getName(), Toast.LENGTH_SHORT).show();
+        });
+        fragmentBinding.rvMostPopular.setLayoutManager(new LinearLayoutManager(getContext()));
+        fragmentBinding.rvMostPopular2.setLayoutManager(new LinearLayoutManager(getContext()));
+        fragmentBinding.rvDailyDiscover.setLayoutManager(new LinearLayoutManager(getContext()));
+        fragmentBinding.rvDailyDiscover2.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.rvMostPopular.setAdapter(foodAdapter);
         fragmentBinding.rvMostPopular2.setAdapter(foodAdapter);
         fragmentBinding.rvDailyDiscover.setAdapter(foodAdapter);
         fragmentBinding.rvDailyDiscover2.setAdapter(foodAdapter);
+        fragmentBinding.rvMostPopular.setNestedScrollingEnabled(false);
+        fragmentBinding.rvMostPopular2.setNestedScrollingEnabled(false);
+        fragmentBinding.rvDailyDiscover.setNestedScrollingEnabled(false);
+        fragmentBinding.rvDailyDiscover2.setNestedScrollingEnabled(false);
     }
 }

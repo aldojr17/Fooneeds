@@ -96,7 +96,7 @@ public class SignUpFragment extends Fragment {
                     }else{
                         signupFragmentBinding.btnSignUp.setVisibility(View.VISIBLE);
                         signupFragmentBinding.loadingBar2.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Wrong email format or password less than 6", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

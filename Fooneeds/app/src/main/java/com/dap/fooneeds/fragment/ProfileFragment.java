@@ -84,6 +84,7 @@ public class ProfileFragment extends Fragment {
                     fragmentBinding.txtName.setText(snapshot.child("name").getValue(String.class));
                     fragmentBinding.txtEmail.setText(snapshot.child("email").getValue(String.class));
                     fragmentBinding.txtPhoneNumber.setText(snapshot.child("phoneNumber").getValue(String.class));
+                    fragmentBinding.txtAddress.setText(snapshot.child("address").getValue(String.class));
                 }
             }
 
@@ -100,18 +101,4 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         }
     }
-
-//    private void collectPhoneNumbers(Map<String,Object> users) {
-//
-//        ArrayList<String> phoneNumbers = new ArrayList<>();
-//
-//        //iterate through each user, ignoring their UID
-//        for (Map.Entry<String, Object> entry : users.entrySet()){
-//
-//            //Get user map
-//            Map singleUser = (Map) entry.getValue();
-//            //Get phone field and append to list
-//            System.out.println(singleUser.toString());
-//        }
-//    }
 }

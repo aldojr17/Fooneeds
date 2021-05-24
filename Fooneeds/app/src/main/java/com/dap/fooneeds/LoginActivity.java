@@ -21,4 +21,15 @@ public class LoginActivity extends AppCompatActivity {
         fragmentTransaction.add(binding.loginContainer.getId(), LoginFragment.newInstance());
         fragmentTransaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if(count == 0){
+            super.onBackPressed();
+        }else{
+            getSupportFragmentManager().popBackStackImmediate();
+        }
+    }
 }

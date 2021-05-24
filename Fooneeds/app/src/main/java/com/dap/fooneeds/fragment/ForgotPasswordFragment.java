@@ -56,21 +56,23 @@ public class ForgotPasswordFragment extends Fragment {
         databaseReference = firebaseDatabase.getReference("users");
         forgotpasswordFragmentBinding.btnResetLink.setOnClickListener(v -> {
             if(!forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim().equals("")){
-                Query query = databaseReference.orderByChild("email").equalTo(forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString());
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()){
-                            Bundle bundle = new Bundle();
-                            bundle.putString(User.USER_EMAIL, forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim());
-                            CheckYourEmailFragment checkYourEmailFragment = CheckYourEmailFragment.newInstance();
-                            checkYourEmailFragment.setArguments(bundle);
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            if(dataSnapshot.child("email").getValue(String.class).equals(forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString())){
+                                Bundle bundle = new Bundle();
+                                bundle.putString(User.USER_EMAIL, forgotpasswordFragmentBinding.etEmailForgotPassword.getText().toString().trim());
+                                CheckYourEmailFragment checkYourEmailFragment = CheckYourEmailFragment.newInstance();
+                                checkYourEmailFragment.setArguments(bundle);
 
-                            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                            transaction.replace(R.id.loginContainer, checkYourEmailFragment);
-                            transaction.commit();
-                        }else{
-                            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                transaction.replace(R.id.loginContainer, checkYourEmailFragment);
+                                transaction.commit();
+                                break;
+                            }else{
+                                Toast.makeText(getContext(), "Email not found", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
 
@@ -80,8 +82,12 @@ public class ForgotPasswordFragment extends Fragment {
                     }
                 });
             }else{
-                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please fill all field", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        forgotpasswordFragmentBinding.backButton.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().popBackStackImmediate();
         });
     }
 

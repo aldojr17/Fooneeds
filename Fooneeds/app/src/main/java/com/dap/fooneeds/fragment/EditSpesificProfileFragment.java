@@ -173,7 +173,9 @@ public class EditSpesificProfileFragment extends Fragment {
                     fragmentBinding.tvEdit2.setVisibility(View.GONE);
                     fragmentBinding.etEditSpesific2.setVisibility(View.GONE);
                     fragmentBinding.spinGender.setVisibility(View.VISIBLE);
-                    fragmentBinding.spinGender.setSelection(u.getGender().equals("Male") ? 0 : 1);
+                    if(u.getGender() != null){
+                        fragmentBinding.spinGender.setSelection(u.getGender().equals("Male") ? 0 : 1);
+                    }
                     fragmentBinding.btnConfirm.setOnClickListener(v -> {
                         fragmentBinding.progressBar.setVisibility(View.VISIBLE);
                         fragmentBinding.btnConfirm.setVisibility(View.GONE);
@@ -220,5 +222,8 @@ public class EditSpesificProfileFragment extends Fragment {
                     });
             }
         }
+        fragmentBinding.btnBack.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().popBackStackImmediate();
+        });
     }
 }

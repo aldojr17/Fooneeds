@@ -1,5 +1,6 @@
 package com.dap.fooneeds.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.dap.fooneeds.MainActivity;
+import com.dap.fooneeds.ProfileActivity;
 import com.dap.fooneeds.R;
 import com.dap.fooneeds.databinding.EditprofileFragmentBinding;
 import com.dap.fooneeds.databinding.ProfileFragmentBinding;
@@ -65,6 +68,10 @@ public class EditProfileFragment extends Fragment {
 
         fragmentBinding.btnChangePass.setOnClickListener(v -> {
             updateUI("password");
+        });
+
+        fragmentBinding.btnBack.setOnClickListener(v -> {
+            getActivity().onBackPressed();
         });
         return fragmentBinding.getRoot();
     }

@@ -98,31 +98,14 @@ public class LoginFragment extends Fragment {
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(command -> {
                     if(command.isSuccessful()){
                         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                        Query query = databaseReference.orderByChild("id").equalTo(firebaseUser.getUid());
-//                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        query.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.exists()){
-                                    System.out.println(snapshot.child(firebaseUser.getUid()).child("name").getValue(String.class));
-                                }
-//                                collectPhoneNumbers((Map<String,Object>) snapshot.getValue());
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
                         fragmentBinding.btnLogin.setVisibility(View.GONE);
                         fragmentBinding.loadingBar.setVisibility(View.VISIBLE);
-                        Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                         System.out.println(firebaseUser);
                         updateUI(firebaseUser);
                     }else{
                         fragmentBinding.btnLogin.setVisibility(View.VISIBLE);
                         fragmentBinding.loadingBar.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Wrong email format or password less than 6", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -133,6 +116,7 @@ public class LoginFragment extends Fragment {
 
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.loginContainer, forgotPasswordFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         });
 
