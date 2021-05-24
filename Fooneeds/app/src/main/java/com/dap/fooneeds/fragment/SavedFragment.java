@@ -1,5 +1,6 @@
 package com.dap.fooneeds.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,21 @@ public class SavedFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentBinding = SaveFragmentBinding.inflate(inflater, container, false);
+        fragmentBinding.btnAllItems.setOnClickListener(v -> {
+            fragmentBinding.btnAllItems.setTextColor(Color.parseColor("#000000"));
+            fragmentBinding.btnCatsTab.setTextColor(Color.parseColor("#808080"));
+            fragmentBinding.btnDogsTab.setTextColor(Color.parseColor("#808080"));
+        });
+        fragmentBinding.btnCatsTab.setOnClickListener(v -> {
+            fragmentBinding.btnAllItems.setTextColor(Color.parseColor("#808080"));
+            fragmentBinding.btnCatsTab.setTextColor(Color.parseColor("#000000"));
+            fragmentBinding.btnDogsTab.setTextColor(Color.parseColor("#808080"));
+        });
+        fragmentBinding.btnDogsTab.setOnClickListener(v -> {
+            fragmentBinding.btnAllItems.setTextColor(Color.parseColor("#808080"));
+            fragmentBinding.btnCatsTab.setTextColor(Color.parseColor("#808080"));
+            fragmentBinding.btnDogsTab.setTextColor(Color.parseColor("#000000"));
+        });
         return fragmentBinding.getRoot();
     }
 

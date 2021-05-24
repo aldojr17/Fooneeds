@@ -48,7 +48,8 @@
             android:layout_weight="1"
             android:clickable="true"
             android:fontFamily="@font/montserrat"
-            android:text="@string/dogs" />
+            android:text="@string/dogs"
+            android:textColor="@android:color/tertiary_text_light" />
 
         <TextView
             android:id="@+id/btnCatsTab"
@@ -57,7 +58,8 @@
             android:layout_weight="1"
             android:clickable="true"
             android:fontFamily="@font/montserrat"
-            android:text="@string/cats" />
+            android:text="@string/cats"
+            android:textColor="@android:color/tertiary_text_light" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

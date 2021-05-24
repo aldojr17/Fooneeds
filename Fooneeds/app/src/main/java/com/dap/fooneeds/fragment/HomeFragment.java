@@ -1,7 +1,6 @@
 package com.dap.fooneeds.fragment;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.dap.fooneeds.adapter.ArticleAdapter;
+import com.dap.fooneeds.CheckoutActivity;
 import com.dap.fooneeds.adapter.FoodAdapter;
 import com.dap.fooneeds.databinding.HomeFragmentBinding;
-import com.dap.fooneeds.databinding.LoginFragmentBinding;
-import com.dap.fooneeds.entity.Brand;
 import com.dap.fooneeds.entity.Food;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,11 +22,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class HomeFragment extends Fragment {
 
@@ -87,6 +82,10 @@ public class HomeFragment extends Fragment {
             foodAdapter.notifyDataSetChanged();
             fragmentBinding.swipeRefresh.setRefreshing(false);
         });
+
+        fragmentBinding.btnCart.setOnClickListener(v -> {
+            updateUI(user);
+        });
         return fragmentBinding.getRoot();
     }
 
@@ -134,6 +133,13 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         user = mAuth.getCurrentUser();
+    }
+
+    private void updateUI(FirebaseUser firebaseUser) {
+        if(firebaseUser != null){
+            Intent intent = new Intent(getActivity(), CheckoutActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void refreshData(ArrayList<Food> foodArrayList){
