@@ -6,18 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="@dimen/size_button_top"
-        android:layout_height="@dimen/size_button_top"
-        android:layout_marginStart="@dimen/margin_start_button_top"
-        android:layout_marginTop="@dimen/margin_top_button_top"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backbutton" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_editSpesific2"
+        android:id="@+id/tv_editAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_with_button"
+        android:layout_marginTop="@dimen/margin_no_button"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
         android:text="@string/edit_address"
@@ -20,23 +20,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/btnBack2"
-        android:layout_width="@dimen/size_button_top"
-        android:layout_height="@dimen/size_button_top"
-        android:layout_marginStart="@dimen/margin_start_button_top"
-        android:layout_marginTop="@dimen/margin_top_button_top"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backbutton" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_no_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_editSpesific2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_editAddress" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="175dp"
     android:layout_height="225dp"
+    android:layout_marginStart="5dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/custom_bank"
     android:elevation="5dp"

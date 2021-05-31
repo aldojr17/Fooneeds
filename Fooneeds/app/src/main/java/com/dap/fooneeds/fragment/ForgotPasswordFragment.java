@@ -85,10 +85,6 @@ public class ForgotPasswordFragment extends Fragment {
                 Toast.makeText(getContext(), "Please fill all field", Toast.LENGTH_SHORT).show();
             }
         });
-
-        forgotpasswordFragmentBinding.backButton.setOnClickListener(v -> {
-            getActivity().getSupportFragmentManager().popBackStackImmediate();
-        });
     }
 
     @Nullable

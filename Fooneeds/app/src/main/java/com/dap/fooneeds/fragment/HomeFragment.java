@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dap.fooneeds.CheckoutActivity;
+import com.dap.fooneeds.DetailActivity;
 import com.dap.fooneeds.adapter.FoodAdapter;
 import com.dap.fooneeds.databinding.HomeFragmentBinding;
 import com.dap.fooneeds.entity.Food;
@@ -63,18 +64,24 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentBinding = HomeFragmentBinding.inflate(inflater, container, false);
         foodAdapter = new FoodAdapter(foods, food -> {
-            Toast.makeText(getContext(), food.getName(), Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putString("cover", food.getCover());
+            bundle.putString("name", food.getName());
+            bundle.putString("type", food.getType());
+            bundle.putString("desc", food.getDescription());
+            bundle.putString("stock", String.valueOf(food.getStock()));
+            bundle.putString("price", String.valueOf(food.getPrice()));
+
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
-        fragmentBinding.rvMostPopular.setLayoutManager(new LinearLayoutManager(getContext()));
-        fragmentBinding.rvMostPopular2.setLayoutManager(new LinearLayoutManager(getContext()));
+        fragmentBinding.rvMostPopular.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         fragmentBinding.rvDailyDiscover.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.rvDailyDiscover2.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.rvMostPopular.setAdapter(foodAdapter);
-        fragmentBinding.rvMostPopular2.setAdapter(foodAdapter);
         fragmentBinding.rvDailyDiscover.setAdapter(foodAdapter);
         fragmentBinding.rvDailyDiscover2.setAdapter(foodAdapter);
-        fragmentBinding.rvMostPopular.setNestedScrollingEnabled(false);
-        fragmentBinding.rvMostPopular2.setNestedScrollingEnabled(false);
         fragmentBinding.rvDailyDiscover.setNestedScrollingEnabled(false);
         fragmentBinding.rvDailyDiscover2.setNestedScrollingEnabled(false);
         fragmentBinding.swipeRefresh.setOnRefreshListener(() -> {
@@ -107,7 +114,7 @@ public class HomeFragment extends Fragment {
                                 food.setName(dataSnapshot.child("name").getValue(String.class));
                                 food.setPrice(dataSnapshot.child("price").getValue(Integer.class));
                                 food.setStock(dataSnapshot.child("stock").getValue(Integer.class));
-                                food.setType(dataSnapshot.child("type").getValue(String.class));
+                                food.setType(ds.child("category").getValue(String.class));
 
                                 foods.add(food);
                             }
@@ -144,18 +151,24 @@ public class HomeFragment extends Fragment {
 
     private void refreshData(ArrayList<Food> foodArrayList){
         foodAdapter = new FoodAdapter(foodArrayList, food -> {
-            Toast.makeText(getContext(), food.getName(), Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putString("cover", food.getCover());
+            bundle.putString("name", food.getName());
+            bundle.putString("type", food.getType());
+            bundle.putString("desc", food.getDescription());
+            bundle.putString("stock", String.valueOf(food.getStock()));
+            bundle.putString("price", String.valueOf(food.getPrice()));
+
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
-        fragmentBinding.rvMostPopular.setLayoutManager(new LinearLayoutManager(getContext()));
-        fragmentBinding.rvMostPopular2.setLayoutManager(new LinearLayoutManager(getContext()));
+        fragmentBinding.rvMostPopular.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         fragmentBinding.rvDailyDiscover.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.rvDailyDiscover2.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.rvMostPopular.setAdapter(foodAdapter);
-        fragmentBinding.rvMostPopular2.setAdapter(foodAdapter);
         fragmentBinding.rvDailyDiscover.setAdapter(foodAdapter);
         fragmentBinding.rvDailyDiscover2.setAdapter(foodAdapter);
-        fragmentBinding.rvMostPopular.setNestedScrollingEnabled(false);
-        fragmentBinding.rvMostPopular2.setNestedScrollingEnabled(false);
         fragmentBinding.rvDailyDiscover.setNestedScrollingEnabled(false);
         fragmentBinding.rvDailyDiscover2.setNestedScrollingEnabled(false);
     }

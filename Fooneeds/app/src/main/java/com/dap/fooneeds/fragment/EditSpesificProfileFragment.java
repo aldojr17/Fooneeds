@@ -222,8 +222,5 @@ public class EditSpesificProfileFragment extends Fragment {
                     });
             }
         }
-        fragmentBinding.btnBack.setOnClickListener(v -> {
-            getActivity().getSupportFragmentManager().popBackStackImmediate();
-        });
     }
 }

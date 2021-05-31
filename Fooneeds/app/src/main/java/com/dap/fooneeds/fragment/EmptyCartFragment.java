@@ -44,9 +44,6 @@ public class EmptyCartFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentBinding = EmptyCartFragmentBinding.inflate(inflater, container, false);
-        fragmentBinding.btnBack.setOnClickListener(v -> {
-            getActivity().onBackPressed();
-        });
         return fragmentBinding.getRoot();
     }
 

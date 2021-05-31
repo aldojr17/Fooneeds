@@ -141,30 +141,15 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_most_popular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_content"
+                android:layout_weight="1"
+                tools:listitem="@layout/food_item">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_most_popular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_content"
-                    android:layout_weight="1"
-                    tools:listitem="@layout/food_item">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_most_popular2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_content"
-                    android:layout_weight="1"
-                    tools:listitem="@layout/food_item" />
-
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                 android:id="@+id/textView9"
@@ -204,4 +189,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

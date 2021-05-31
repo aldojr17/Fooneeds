@@ -69,10 +69,6 @@ public class EditProfileFragment extends Fragment {
         fragmentBinding.btnChangePass.setOnClickListener(v -> {
             updateUI("password");
         });
-
-        fragmentBinding.btnBack.setOnClickListener(v -> {
-            getActivity().onBackPressed();
-        });
         return fragmentBinding.getRoot();
     }
 
