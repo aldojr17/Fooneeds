@@ -91,6 +91,11 @@
     <string name="profile">My Profile</string>
     <string name="logout">Log out</string>
     <string name="edit_address">Edit Address</string>
+    <string name="text_qty">Qty</string>
+    <string name="text_minus">-</string>
+    <string name="text_plus">+</string>
+    <string name="text_add">Add</string>
+    <string name="text_item_added">Item Added!</string>
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>

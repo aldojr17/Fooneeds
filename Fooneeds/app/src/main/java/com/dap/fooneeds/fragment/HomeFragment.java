@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment {
             bundle.putString("desc", food.getDescription());
             bundle.putString("stock", String.valueOf(food.getStock()));
             bundle.putString("price", String.valueOf(food.getPrice()));
+            bundle.putString("id", user.getUid());
 
             Intent intent = new Intent(getActivity(), DetailActivity.class);
             intent.putExtras(bundle);
