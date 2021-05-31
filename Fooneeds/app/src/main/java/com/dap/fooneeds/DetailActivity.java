@@ -1,5 +1,6 @@
 package com.dap.fooneeds;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -13,8 +14,12 @@ import com.dap.fooneeds.databinding.ActivityDetailBinding;
 import com.dap.fooneeds.databinding.AddToCartPopupBinding;
 import com.dap.fooneeds.databinding.ToastAddBinding;
 import com.dap.fooneeds.entity.CartItem;
+import com.dap.fooneeds.entity.Food;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -22,6 +27,8 @@ public class DetailActivity extends AppCompatActivity {
     private AddToCartPopupBinding popupBinding;
     private ToastAddBinding addBinding;
     private DatabaseReference reference;
+    private DatabaseReference foodReference;
+    private DatabaseReference detailFoodReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,56 @@ public class DetailActivity extends AppCompatActivity {
             popupBinding.textTotal.setText("Rp." + bundle.getString("price"));
         }
 
-        reference = FirebaseDatabase.getInstance().getReference("users/" + bundle.getString("id") + "/cart");
+        reference = FirebaseDatabase.getInstance().getReference("users/" + bundle.getString("id"));
+        reference.child("fav").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    if(dataSnapshot.child("name").getValue().equals(bundle.getString("name"))){
+                        Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.favourites)).into(binding.btnFav);
+                    }else{
+                        Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.loveplain)).into(binding.btnFav);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        foodReference = FirebaseDatabase.getInstance().getReference("foods");
+        foodReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    if(ds.child("category").getValue().equals(bundle.getString("type"))){
+                        DatabaseReference catReference = FirebaseDatabase.getInstance().getReference("foods/" + ds.getKey() + "/products");
+                        catReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot childSnap : snapshot.getChildren()){
+                                    if(((Long) childSnap.child("id").getValue()) == Long.parseLong(bundle.getString("foodId"))){
+                                        detailFoodReference = FirebaseDatabase.getInstance().getReference("foods/" + ds.getKey() + "/products/" + childSnap.getKey());
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         final Dialog mBottomSheetDialog = new Dialog(this, R.style.MaterialDialogSheet);
         mBottomSheetDialog.setContentView(popupBinding.getRoot()); // your custom view.
@@ -74,13 +130,45 @@ public class DetailActivity extends AppCompatActivity {
             item.setPrice(Integer.parseInt(popupBinding.textTotal.getText().toString().substring(3)));
             item.setQty(Integer.parseInt(popupBinding.textQty.getText().toString()));
 
-            reference.push().setValue(item);
+            reference.child("cart").push().setValue(item);
+
+            detailFoodReference.child("stock").setValue(Integer.parseInt(bundle.getString("stock")) - Integer.parseInt(popupBinding.textQty.getText().toString()));
+            binding.tvStock.setText("Stock : " + String.valueOf(Integer.parseInt(bundle.getString("stock")) - Integer.parseInt(popupBinding.textQty.getText().toString())) + " pcs");
             mBottomSheetDialog.hide();
             Toast toast = new Toast(getApplicationContext());
-            toast.setGravity(Gravity.BOTTOM, 0, 0);
+            toast.setGravity(Gravity.BOTTOM, 0, 150);
             toast.setDuration(Toast.LENGTH_LONG);
             toast.setView(addBinding.getRoot());
             toast.show();
+        });
+
+        binding.btnFav.setOnClickListener(v -> {
+            CartItem item = new CartItem();
+            item.setName(bundle.getString("name"));
+            item.setCover(bundle.getString("cover"));
+            item.setCategory(bundle.getString("type"));
+            item.setPrice(Integer.parseInt(binding.tvPrice.getText().toString().substring(3)));
+            if(binding.btnFav.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.favourites).getConstantState()){
+                Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.loveplain)).into(binding.btnFav);
+                reference.child("fav").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            if(dataSnapshot.child("name").getValue().equals(item.getName())){
+                                snapshot.child(dataSnapshot.getKey()).getRef().removeValue();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }else{
+                Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.favourites)).into(binding.btnFav);
+                reference.child("fav").push().setValue(item);
+            }
         });
     }
 }

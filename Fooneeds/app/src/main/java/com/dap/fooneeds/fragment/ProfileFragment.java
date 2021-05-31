@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.dap.fooneeds.LoginActivity;
 import com.dap.fooneeds.MainActivity;
 import com.dap.fooneeds.ProfileActivity;
@@ -80,12 +81,24 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    System.out.println(snapshot.getValue());
                     fragmentBinding.txtName.setText(snapshot.child("name").getValue(String.class));
                     fragmentBinding.txtEmail.setText(snapshot.child("email").getValue(String.class));
                     fragmentBinding.txtPhoneNumber.setText(snapshot.child("phoneNumber").getValue(String.class));
                     fragmentBinding.txtAddress.setText(snapshot.child("address").getValue(String.class));
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users/" + user.getUid());
+        reference.child("fav").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                fragmentBinding.txtCountSaved.setText(String.valueOf(snapshot.getChildrenCount()));
             }
 
             @Override

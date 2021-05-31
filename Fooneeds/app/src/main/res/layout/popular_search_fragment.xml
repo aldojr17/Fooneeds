@@ -1,79 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="@dimen/app_margin">
+    android:paddingTop="@dimen/app_margin"
+    tools:context=".PopularActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_content"
-        android:layout_marginEnd="@dimen/margin_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView14"
-            android:layout_width="@dimen/size_button_top"
-            android:layout_height="@dimen/size_button_top"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/search" />
-
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="@dimen/size_button_top"
-            android:layout_height="@dimen/size_button_top"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/filter" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtSaved3"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_no_button"
-        android:fontFamily="@font/montserrat"
-        android:gravity="center"
-        android:text="@string/most_popular"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/size_title_home"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/app_margin"
+        android:layout_marginRight="@dimen/app_margin">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_title_to_desc_text"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSaved3">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_most_pop"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_content"
-            android:layout_weight="1"
-            tools:listitem="@layout/food_item" />
+            android:layout_marginEnd="@dimen/margin_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_most_pop2"
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="@dimen/size_button_top"
+                android:layout_height="@dimen/size_button_top"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/search" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="@dimen/size_button_top"
+                android:layout_height="@dimen/size_button_top"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/filter" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtSaved3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_content"
-            android:layout_weight="1"
-            tools:listitem="@layout/food_item">
+            android:layout_marginTop="@dimen/margin_no_button"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="@string/most_popular"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_title_home"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_title_to_desc_text"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSaved3">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_most_pop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_content"
+                android:layout_weight="1"
+                tools:listitem="@layout/food_item" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_most_pop2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_content"
+                android:layout_weight="1"
+                tools:listitem="@layout/food_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
