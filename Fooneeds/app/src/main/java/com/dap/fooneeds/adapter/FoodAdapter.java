@@ -53,7 +53,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
         public void setFoodData(Food food){
             binding.txtFoodName.setText(food.getName());
-            binding.txtFoodType.setText(food.getType());
+            binding.txtFoodType.setText(food.getCategory());
             binding.txtFoodPrice.setText("Rp."+String.valueOf(food.getPrice()));
             Glide.with(binding.getRoot())
                     .load(food.getCover())

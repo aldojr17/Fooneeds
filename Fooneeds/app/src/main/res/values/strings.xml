@@ -96,6 +96,7 @@
     <string name="text_plus">+</string>
     <string name="text_add">Add</string>
     <string name="text_item_added">Item Added!</string>
+    <string name="error_login2">Password and Confirm Password don\'t match</string>
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>

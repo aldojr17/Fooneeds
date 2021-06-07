@@ -72,33 +72,39 @@ public class SignUpFragment extends Fragment {
                 signupFragmentBinding.loadingBar2.setVisibility(View.GONE);
                 Toast.makeText(getContext(), getResources().getString(R.string.error_login), Toast.LENGTH_SHORT).show();
             }else{
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(command -> {
-                    if(command.isSuccessful()){
-                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                        User user = new User();
-                        user.setId(firebaseUser.getUid());
-                        user.setName(name);
-                        user.setEmail(email);
-                        user.setPassword(password);
-                        databaseReference.child(firebaseUser.getUid()).setValue(user);
-                        Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
+                if(!confirmPassword.trim().equals(password.trim())){
+                    signupFragmentBinding.btnSignUp.setVisibility(View.VISIBLE);
+                    signupFragmentBinding.loadingBar2.setVisibility(View.GONE);
+                    Toast.makeText(getContext(), getResources().getString(R.string.error_login2), Toast.LENGTH_SHORT).show();
+                }else{
+                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(command -> {
+                        if(command.isSuccessful()){
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            User user = new User();
+                            user.setId(firebaseUser.getUid());
+                            user.setName(name);
+                            user.setEmail(email);
+                            user.setPassword(password);
+                            databaseReference.child(firebaseUser.getUid()).setValue(user);
+                            Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
 
-                        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(command2 -> {
-                            if(command2.isSuccessful()){
-                                FirebaseUser firebaseUser2 = mAuth.getCurrentUser();
-                                updateUI(firebaseUser2);
-                            }else{
-                                signupFragmentBinding.btnSignUp.setVisibility(View.VISIBLE);
-                                signupFragmentBinding.loadingBar2.setVisibility(View.GONE);
-                                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }else{
-                        signupFragmentBinding.btnSignUp.setVisibility(View.VISIBLE);
-                        signupFragmentBinding.loadingBar2.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "Wrong email format or password less than 6", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(command2 -> {
+                                if(command2.isSuccessful()){
+                                    FirebaseUser firebaseUser2 = mAuth.getCurrentUser();
+                                    updateUI(firebaseUser2);
+                                }else{
+                                    signupFragmentBinding.btnSignUp.setVisibility(View.VISIBLE);
+                                    signupFragmentBinding.loadingBar2.setVisibility(View.GONE);
+                                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else{
+                            signupFragmentBinding.btnSignUp.setVisibility(View.VISIBLE);
+                            signupFragmentBinding.loadingBar2.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), "Wrong email format or password less than 6", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }

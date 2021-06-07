@@ -10,6 +10,7 @@ public class Food {
     private int stock;
     private String description;
     private String cover;
+    private String category;
 
     public Food() {
     }
@@ -76,5 +77,13 @@ public class Food {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

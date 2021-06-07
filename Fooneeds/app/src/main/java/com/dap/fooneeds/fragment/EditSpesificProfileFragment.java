@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dap.fooneeds.R;
@@ -101,6 +102,8 @@ public class EditSpesificProfileFragment extends Fragment {
                             Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                             fragmentBinding.progressBar.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+
                         }
                     });
                     break;
@@ -141,6 +144,7 @@ public class EditSpesificProfileFragment extends Fragment {
                             });
                             fragmentBinding.progressBar.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
                         }
                     });
                     break;
@@ -163,6 +167,7 @@ public class EditSpesificProfileFragment extends Fragment {
                             Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                             fragmentBinding.progressBar.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
                         }
                     });
                     break;
@@ -183,6 +188,7 @@ public class EditSpesificProfileFragment extends Fragment {
                         Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                         fragmentBinding.progressBar.setVisibility(View.GONE);
                         fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                        getActivity().getSupportFragmentManager().popBackStackImmediate();
                     });
                     break;
                 case "password":
@@ -196,28 +202,39 @@ public class EditSpesificProfileFragment extends Fragment {
                             fragmentBinding.progressBar2.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
                         }else {
-                            AuthCredential credential = EmailAuthProvider.getCredential(u.getEmail(), u.getPassword()); // Current Login Credentials
+                            if(!fragmentBinding.etCurrentPassword.getText().toString().trim().equals(u.getPassword())){
+                                Toast.makeText(getContext(), "Wrong Current Password", Toast.LENGTH_SHORT).show();
+                                fragmentBinding.progressBar2.setVisibility(View.GONE);
+                                fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                            }else if(!fragmentBinding.etNewPassword.getText().toString().trim().equals(fragmentBinding.etConfirmPassword.getText().toString().trim())){
+                                Toast.makeText(getContext(), "Password and Confirm Password Don't Match", Toast.LENGTH_SHORT).show();
+                                fragmentBinding.progressBar2.setVisibility(View.GONE);
+                                fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                            }else{
+                                AuthCredential credential = EmailAuthProvider.getCredential(u.getEmail(), u.getPassword()); // Current Login Credentials
 
-                            // Prompt the user to re-provide their sign-in credentials
-                            user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    // Now change your email address \\
-                                    //----------------Code for Changing Email Address----------\\
-                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    user.updatePassword(fragmentBinding.etNewPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                reference.child(user.getUid()).child("password").setValue(fragmentBinding.etNewPassword.getText().toString());
-                                                Toast.makeText(getContext(), "Password Changed", Toast.LENGTH_LONG).show();
+                                // Prompt the user to re-provide their sign-in credentials
+                                user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        // Now change your email address \\
+                                        //----------------Code for Changing Email Address----------\\
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        user.updatePassword(fragmentBinding.etNewPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    reference.child(user.getUid()).child("password").setValue(fragmentBinding.etNewPassword.getText().toString());
+                                                    Toast.makeText(getContext(), "Password Changed", Toast.LENGTH_LONG).show();
+                                                }
                                             }
-                                        }
-                                    });
-                                }
-                            });
+                                        });
+                                    }
+                                });
+                            }
                             fragmentBinding.progressBar2.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
                         }
                     });
             }

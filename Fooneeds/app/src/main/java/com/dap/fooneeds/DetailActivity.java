@@ -3,7 +3,9 @@ package com.dap.fooneeds;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -42,7 +44,7 @@ public class DetailActivity extends AppCompatActivity {
         if(bundle != null && !bundle.isEmpty()){
             Glide.with(binding.getRoot()).load(bundle.getString("cover")).into(binding.imgFood);
             binding.tvFoodName.setText(bundle.getString("name"));
-            binding.tvFoodType.setText(bundle.getString("type"));
+            binding.tvFoodType.setText(bundle.getString("category"));
             binding.tvDesc.setText(bundle.getString("desc"));
             binding.tvStock.setText("Stock : " + bundle.getString("stock") + " pcs");
             binding.tvPrice.setText("Rp." + bundle.getString("price"));
@@ -50,14 +52,16 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         reference = FirebaseDatabase.getInstance().getReference("users/" + bundle.getString("id"));
-        reference.child("fav").addValueEventListener(new ValueEventListener() {
+        reference.child("fav").addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    if(dataSnapshot.child("name").getValue().equals(bundle.getString("name"))){
-                        Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.favourites)).into(binding.btnFav);
+                    if(dataSnapshot.child("name").getValue(String.class).equals(bundle.getString("name"))){
+                        binding.btnFav.setImageDrawable(getResources().getDrawable(R.drawable.favourites));
+                        break;
                     }else{
-                        Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.loveplain)).into(binding.btnFav);
+                        binding.btnFav.setImageDrawable(getResources().getDrawable(R.drawable.loveplain));
                     }
                 }
             }
@@ -73,7 +77,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    if(ds.child("category").getValue().equals(bundle.getString("type"))){
+                    if(ds.child("category").getValue().equals(bundle.getString("category"))){
                         DatabaseReference catReference = FirebaseDatabase.getInstance().getReference("foods/" + ds.getKey() + "/products");
                         catReference.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -126,7 +130,7 @@ public class DetailActivity extends AppCompatActivity {
             CartItem item = new CartItem();
             item.setName(bundle.getString("name"));
             item.setCover(bundle.getString("cover"));
-            item.setCategory(bundle.getString("type"));
+            item.setCategory(bundle.getString("category"));
             item.setPrice(Integer.parseInt(popupBinding.textTotal.getText().toString().substring(3)));
             item.setQty(Integer.parseInt(popupBinding.textQty.getText().toString()));
 
@@ -143,19 +147,23 @@ public class DetailActivity extends AppCompatActivity {
         });
 
         binding.btnFav.setOnClickListener(v -> {
-            CartItem item = new CartItem();
+            Food item = new Food();
             item.setName(bundle.getString("name"));
             item.setCover(bundle.getString("cover"));
-            item.setCategory(bundle.getString("type"));
+            item.setCategory(bundle.getString("category"));
+            item.setType(bundle.getString("type"));
+            item.setAge(bundle.getString("age"));
+            item.setId(Integer.parseInt(bundle.getString("foodId")));
             item.setPrice(Integer.parseInt(binding.tvPrice.getText().toString().substring(3)));
             if(binding.btnFav.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.favourites).getConstantState()){
-                Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.loveplain)).into(binding.btnFav);
-                reference.child("fav").addValueEventListener(new ValueEventListener() {
+                binding.btnFav.setImageDrawable(getResources().getDrawable(R.drawable.loveplain));
+                reference.child("fav").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                             if(dataSnapshot.child("name").getValue().equals(item.getName())){
                                 snapshot.child(dataSnapshot.getKey()).getRef().removeValue();
+                                break;
                             }
                         }
                     }
@@ -166,7 +174,7 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 });
             }else{
-                Glide.with(getApplicationContext()).load(getResources().getDrawable(R.drawable.favourites)).into(binding.btnFav);
+                binding.btnFav.setImageDrawable(getResources().getDrawable(R.drawable.favourites));
                 reference.child("fav").push().setValue(item);
             }
         });
