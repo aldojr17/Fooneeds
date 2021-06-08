@@ -58,6 +58,10 @@ public class SignUpFragment extends Fragment {
     public void onStart() {
         super.onStart();
         mAuth = FirebaseAuth.getInstance();
+        signupFragmentBinding.etNameSignUp.setText("");
+        signupFragmentBinding.etEmailSignUp.setText("");
+        signupFragmentBinding.etPasswordSignUp.setText("");
+        signupFragmentBinding.etConfirmPasswordSignUp.setText("");
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
         signupFragmentBinding.btnSignUp.setOnClickListener(v -> {

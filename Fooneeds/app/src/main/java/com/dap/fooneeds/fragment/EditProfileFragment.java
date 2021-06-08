@@ -1,6 +1,7 @@
 package com.dap.fooneeds.fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class EditProfileFragment extends Fragment {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private User u;
+    public static final int PICK_IMAGE = 1;
 
     private EditProfileFragment() {
 
@@ -69,7 +71,25 @@ public class EditProfileFragment extends Fragment {
         fragmentBinding.btnChangePass.setOnClickListener(v -> {
             updateUI("password");
         });
+
+        fragmentBinding.btnChangeProfilePhoto.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        });
         return fragmentBinding.getRoot();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == PICK_IMAGE){
+            Uri selectedImageUri = data.getData();
+            if (null != selectedImageUri) {
+                fragmentBinding.profilePhoto.setImageURI(selectedImageUri);
+            }
+        }
     }
 
     private void updateUI(String type){

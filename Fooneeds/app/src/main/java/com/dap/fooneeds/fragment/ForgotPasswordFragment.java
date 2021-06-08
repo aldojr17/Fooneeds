@@ -52,6 +52,7 @@ public class ForgotPasswordFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        forgotpasswordFragmentBinding.etEmailForgotPassword.setText("");
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("users");
         forgotpasswordFragmentBinding.btnResetLink.setOnClickListener(v -> {

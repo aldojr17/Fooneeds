@@ -157,7 +157,7 @@
             android:background="@drawable/custom_input"
             android:ems="10"
             android:fontFamily="@font/montserrat"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:paddingStart="@dimen/padding_start"
             android:paddingEnd="@dimen/padding_start"
             android:textColor="@color/black" />
@@ -199,7 +199,7 @@
             android:background="@drawable/custom_input"
             android:ems="10"
             android:fontFamily="@font/montserrat"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:paddingStart="@dimen/padding_start"
             android:paddingEnd="@dimen/padding_start"
             android:textColor="@color/black" />
@@ -226,7 +226,7 @@
             android:background="@drawable/custom_input"
             android:ems="10"
             android:fontFamily="@font/montserrat"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:paddingStart="@dimen/padding_start"
             android:paddingEnd="@dimen/padding_start"
             android:textColor="@color/black" />

@@ -157,6 +157,7 @@ public class DetailActivity extends AppCompatActivity {
             item.setPrice(Integer.parseInt(binding.tvPrice.getText().toString().substring(3)));
             if(binding.btnFav.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.favourites).getConstantState()){
                 binding.btnFav.setImageDrawable(getResources().getDrawable(R.drawable.loveplain));
+                Toast.makeText(this, "Item Removed!", Toast.LENGTH_SHORT).show();
                 reference.child("fav").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -175,6 +176,7 @@ public class DetailActivity extends AppCompatActivity {
                 });
             }else{
                 binding.btnFav.setImageDrawable(getResources().getDrawable(R.drawable.favourites));
+                Toast.makeText(this, "Item Saved!", Toast.LENGTH_SHORT).show();
                 reference.child("fav").push().setValue(item);
             }
         });

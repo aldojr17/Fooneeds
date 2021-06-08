@@ -77,6 +77,7 @@ public class EditSpesificProfileFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        clear();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("users");
@@ -137,6 +138,7 @@ public class EditSpesificProfileFragment extends Fragment {
                                             if (task.isSuccessful()) {
                                                 reference.child(user.getUid()).child("email").setValue(fragmentBinding.etEditSpesific1.getText().toString());
                                                 Toast.makeText(getContext(), "Email Changed" + ", Current Email is " + fragmentBinding.etEditSpesific1.getText().toString(), Toast.LENGTH_LONG).show();
+                                                getActivity().getSupportFragmentManager().popBackStackImmediate();
                                             }
                                         }
                                     });
@@ -144,7 +146,6 @@ public class EditSpesificProfileFragment extends Fragment {
                             });
                             fragmentBinding.progressBar.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
-                            getActivity().getSupportFragmentManager().popBackStackImmediate();
                         }
                     });
                     break;
@@ -194,6 +195,14 @@ public class EditSpesificProfileFragment extends Fragment {
                 case "password":
                     fragmentBinding.editLayout.setVisibility(View.GONE);
                     fragmentBinding.changePasswordLayout.setVisibility(View.VISIBLE);
+                    fragmentBinding.btnForgotPassword.setOnClickListener(v -> {
+                        ForgotPasswordFragment forgotPasswordFragment = ForgotPasswordFragment.newInstance();
+
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.profileContainer, forgotPasswordFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    });
                     fragmentBinding.btnChangePassword.setOnClickListener(v -> {
                         fragmentBinding.progressBar2.setVisibility(View.VISIBLE);
                         fragmentBinding.btnConfirm.setVisibility(View.GONE);
@@ -226,6 +235,7 @@ public class EditSpesificProfileFragment extends Fragment {
                                                 if (task.isSuccessful()) {
                                                     reference.child(user.getUid()).child("password").setValue(fragmentBinding.etNewPassword.getText().toString());
                                                     Toast.makeText(getContext(), "Password Changed", Toast.LENGTH_LONG).show();
+                                                    getActivity().getSupportFragmentManager().popBackStackImmediate();
                                                 }
                                             }
                                         });
@@ -234,10 +244,17 @@ public class EditSpesificProfileFragment extends Fragment {
                             }
                             fragmentBinding.progressBar2.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
-                            getActivity().getSupportFragmentManager().popBackStackImmediate();
                         }
                     });
             }
         }
+    }
+
+    private void clear() {
+        fragmentBinding.etNewPassword.setText("");
+        fragmentBinding.etCurrentPassword.setText("");
+        fragmentBinding.etConfirmPassword.setText("");
+        fragmentBinding.etEditSpesific1.setText("");
+        fragmentBinding.etEditSpesific2.setText("");
     }
 }

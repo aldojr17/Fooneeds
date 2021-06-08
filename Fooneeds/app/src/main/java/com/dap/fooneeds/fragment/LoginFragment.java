@@ -141,6 +141,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        fragmentBinding.etEmailLogin.setText("");
+        fragmentBinding.etPasswordLogin.setText("");
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
             updateUI(user);
