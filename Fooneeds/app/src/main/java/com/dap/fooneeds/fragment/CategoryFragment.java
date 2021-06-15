@@ -124,7 +124,8 @@ public class CategoryFragment extends Fragment {
                                     food.setName(dataSnapshot.child("name").getValue(String.class));
                                     food.setPrice(dataSnapshot.child("price").getValue(Integer.class));
                                     food.setStock(dataSnapshot.child("stock").getValue(Integer.class));
-                                    food.setType(ds.child("category").getValue(String.class));
+                                    food.setCategory(ds.child("category").getValue(String.class));
+                                    food.setType(dataSnapshot.child("type").getValue(String.class));
 
                                     foods.add(food);
                                 }
@@ -170,6 +171,7 @@ public class CategoryFragment extends Fragment {
             bundle.putString("id", mAuth.getUid());
             bundle.putString("foodId", String.valueOf(food.getId()));
             bundle.putString("age", food.getAge());
+            bundle.putString("category", food.getCategory());
 
             Intent intent = new Intent(getActivity(), DetailActivity.class);
             intent.putExtras(bundle);

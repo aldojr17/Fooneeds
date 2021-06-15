@@ -6,6 +6,7 @@ public class CartItem {
     private String category;
     private String cover;
     private int price;
+    private int oriPrice;
     private int qty;
 
     public String getName() {
@@ -46,5 +47,13 @@ public class CartItem {
 
     public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public int getOriPrice() {
+        return oriPrice;
+    }
+
+    public void setOriPrice(int oriPrice) {
+        this.oriPrice = oriPrice;
     }
 }

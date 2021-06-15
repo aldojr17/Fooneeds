@@ -19,6 +19,7 @@ import com.dap.fooneeds.R;
 import com.dap.fooneeds.adapter.ArticleAdapter;
 import com.dap.fooneeds.databinding.ArticleFragmentBinding;
 import com.dap.fooneeds.databinding.EditSpesificProfileFragmentBinding;
+import com.dap.fooneeds.entity.Address;
 import com.dap.fooneeds.entity.Article;
 import com.dap.fooneeds.entity.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -84,6 +85,30 @@ public class EditSpesificProfileFragment extends Fragment {
         if(getArguments() != null){
             User u = getArguments().getParcelable(User.USER_DATA);
             switch (getArguments().getString(User.EDIT_USER)){
+                case "address":
+                    fragmentBinding.tvEditSpesific.setText(getResources().getString(R.string.new_address));
+                    fragmentBinding.tvEdit.setText(getResources().getString(R.string.text_street));
+                    fragmentBinding.spinGender.setVisibility(View.GONE);
+                    fragmentBinding.btnConfirm.setOnClickListener(v -> {
+                        fragmentBinding.progressBar.setVisibility(View.VISIBLE);
+                        fragmentBinding.btnConfirm.setVisibility(View.GONE);
+                        if(fragmentBinding.etEditSpesific1.getText().toString().isEmpty() || fragmentBinding.etEditSpesific2.getText().toString().isEmpty()){
+                            Toast.makeText(getContext(), "Please fill all field", Toast.LENGTH_SHORT).show();
+                            fragmentBinding.progressBar.setVisibility(View.GONE);
+                            fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                        }else{
+                            Address address = new Address();
+                            address.setStreet(fragmentBinding.etEditSpesific1.getText().toString());
+                            address.setCity(fragmentBinding.etEditSpesific2.getText().toString());
+                            address.setSelected("No");
+                            reference.child(user.getUid()).child("addresses").push().setValue(address);
+                            Toast.makeText(getContext(), "Address Added", Toast.LENGTH_SHORT).show();
+                            fragmentBinding.progressBar.setVisibility(View.GONE);
+                            fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+                        }
+                    });
+                    break;
                 case "name":
                     fragmentBinding.tvEditSpesific.setText(getResources().getString(R.string.edit_name));
                     fragmentBinding.tvEdit.setText(getResources().getString(R.string.text_edit_name));

@@ -31,6 +31,7 @@ public class DetailActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private DatabaseReference foodReference;
     private DatabaseReference detailFoodReference;
+    private Dialog mBottomSheetDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,12 @@ public class DetailActivity extends AppCompatActivity {
         popupBinding = AddToCartPopupBinding.inflate(getLayoutInflater());
         addBinding = ToastAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        mBottomSheetDialog = new Dialog(this, R.style.MaterialDialogSheet);
+        mBottomSheetDialog.setContentView(popupBinding.getRoot()); // your custom view.
+        mBottomSheetDialog.setCancelable(true);
+        mBottomSheetDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        mBottomSheetDialog.getWindow().setGravity(Gravity.BOTTOM);
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null && !bundle.isEmpty()){
@@ -104,12 +111,6 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        final Dialog mBottomSheetDialog = new Dialog(this, R.style.MaterialDialogSheet);
-        mBottomSheetDialog.setContentView(popupBinding.getRoot()); // your custom view.
-        mBottomSheetDialog.setCancelable(true);
-        mBottomSheetDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        mBottomSheetDialog.getWindow().setGravity(Gravity.BOTTOM);
-
         binding.btnAddToCart.setOnClickListener(v -> mBottomSheetDialog.show());
 
         popupBinding.btnMinus.setOnClickListener(v -> {
@@ -131,14 +132,13 @@ public class DetailActivity extends AppCompatActivity {
             item.setName(bundle.getString("name"));
             item.setCover(bundle.getString("cover"));
             item.setCategory(bundle.getString("category"));
+            item.setOriPrice(Integer.parseInt(bundle.getString("price")));
             item.setPrice(Integer.parseInt(popupBinding.textTotal.getText().toString().substring(3)));
             item.setQty(Integer.parseInt(popupBinding.textQty.getText().toString()));
 
             reference.child("cart").push().setValue(item);
 
-            detailFoodReference.child("stock").setValue(Integer.parseInt(bundle.getString("stock")) - Integer.parseInt(popupBinding.textQty.getText().toString()));
-            binding.tvStock.setText("Stock : " + String.valueOf(Integer.parseInt(bundle.getString("stock")) - Integer.parseInt(popupBinding.textQty.getText().toString())) + " pcs");
-            mBottomSheetDialog.hide();
+            mBottomSheetDialog.dismiss();
             Toast toast = new Toast(getApplicationContext());
             toast.setGravity(Gravity.BOTTOM, 0, 150);
             toast.setDuration(Toast.LENGTH_LONG);

@@ -3,9 +3,11 @@ package com.dap.fooneeds.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,7 @@ import com.dap.fooneeds.adapter.FoodAdapter;
 import com.dap.fooneeds.adapter.SavedAdapter;
 import com.dap.fooneeds.databinding.HomeFragmentBinding;
 import com.dap.fooneeds.databinding.SaveFragmentBinding;
+import com.dap.fooneeds.entity.CartItem;
 import com.dap.fooneeds.entity.Food;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -88,7 +91,30 @@ public class SavedFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentBinding = SaveFragmentBinding.inflate(inflater, container, false);
-        savedAdapter = new SavedAdapter(foods);
+        savedAdapter = new SavedAdapter(foods, new SavedAdapter.SavedItemListener() {
+            @Override
+            public void savedDataClicked(int position) {
+                Toast.makeText(getContext(), "Item Removed!", Toast.LENGTH_SHORT).show();
+                FirebaseDatabase.getInstance().getReference("users/" + user.getUid()).child("fav").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            if(dataSnapshot.child("name").getValue().equals(foods.get(position).getName())){
+                                snapshot.child(dataSnapshot.getKey()).getRef().removeValue();
+                                break;
+                            }
+                        }
+                        foods.remove(position);
+                        savedAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
         fragmentBinding.rvSave.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.rvSave.setAdapter(savedAdapter);
         fragmentBinding.btnAllItems.setOnClickListener(v -> {
@@ -181,5 +207,4 @@ public class SavedFragment extends Fragment {
         });
         return fragmentBinding.getRoot();
     }
-
 }

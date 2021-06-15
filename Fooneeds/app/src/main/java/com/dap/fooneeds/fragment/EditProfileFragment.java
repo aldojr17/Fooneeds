@@ -61,9 +61,12 @@ public class EditProfileFragment extends Fragment {
         fragmentBinding.btnEditPhone.setOnClickListener(v -> {
             updateUI("phone");
         });
-//        fragmentBinding.btnEditAddress.setOnClickListener(v -> {
-//            updateUI("address");
-//        });
+        fragmentBinding.btnEditAddress.setOnClickListener(v -> {
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.profileContainer, EditAddressFragment.newInstance());
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
         fragmentBinding.btnEditGender.setOnClickListener(v -> {
             updateUI("gender");
         });
