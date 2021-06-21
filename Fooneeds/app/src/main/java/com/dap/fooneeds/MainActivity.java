@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.dap.fooneeds.databinding.ActivityMainBinding;
 import com.dap.fooneeds.databinding.HomeFragmentBinding;
 import com.dap.fooneeds.fragment.ArticleFragment;
+import com.dap.fooneeds.fragment.EditProfileFragment;
 import com.dap.fooneeds.fragment.ForgotPasswordFragment;
 import com.dap.fooneeds.fragment.HomeFragment;
 import com.dap.fooneeds.fragment.LoginFragment;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = SavedFragment.newInstance();
                         break;
                     case R.id.profile:
-                        fragment = ProfileFragment.newInstance();
+                        fragment = EditProfileFragment.newInstance();
                         break;
                     case R.id.homee:
                         fragment = HomeFragment.newInstance();

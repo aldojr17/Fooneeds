@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.dap.fooneeds.databinding.ActivityCheckoutBinding;
+import com.dap.fooneeds.fragment.AfterCheckoutFragment;
 import com.dap.fooneeds.fragment.CartCheckoutFragment;
 import com.dap.fooneeds.fragment.EmptyCartFragment;
 import com.dap.fooneeds.fragment.LoginFragment;
@@ -56,7 +57,15 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    public void onBackPressed() {
+        if(AfterCheckoutFragment.newInstance().isVisible()){
+            this.finish();
+        }else{
+            if(getSupportFragmentManager().getBackStackEntryCount() == 0){
+                super.onBackPressed();
+            }else{
+                getSupportFragmentManager().popBackStackImmediate();
+            }
+        }
     }
 }

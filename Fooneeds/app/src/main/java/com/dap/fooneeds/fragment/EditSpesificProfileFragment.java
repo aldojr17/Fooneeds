@@ -81,6 +81,34 @@ public class EditSpesificProfileFragment extends Fragment {
         clear();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    switch (getArguments().getString(User.EDIT_USER)){
+                        case "phone":
+                            fragmentBinding.etEditSpesific1.setText(snapshot.child("phoneNumber").getValue(String.class));
+                            break;
+                        case "name":
+                            fragmentBinding.etEditSpesific1.setText(snapshot.child("name").getValue(String.class));
+                            break;
+                        case "email":
+                            fragmentBinding.etEditSpesific1.setText(snapshot.child("email").getValue(String.class));
+                            break;
+                        case "gender":
+                            fragmentBinding.spinGender.setSelection(snapshot.child("gender").equals("Male") ? 0 : 1);
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         reference = FirebaseDatabase.getInstance().getReference("users");
         if(getArguments() != null){
             User u = getArguments().getParcelable(User.USER_DATA);
@@ -105,14 +133,13 @@ public class EditSpesificProfileFragment extends Fragment {
                             Toast.makeText(getContext(), "Address Added", Toast.LENGTH_SHORT).show();
                             fragmentBinding.progressBar.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
-                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+                            getActivity().onBackPressed();
                         }
                     });
                     break;
                 case "name":
                     fragmentBinding.tvEditSpesific.setText(getResources().getString(R.string.edit_name));
                     fragmentBinding.tvEdit.setText(getResources().getString(R.string.text_edit_name));
-                    fragmentBinding.etEditSpesific1.setText(u.getName());
                     fragmentBinding.tvEdit2.setVisibility(View.GONE);
                     fragmentBinding.etEditSpesific2.setVisibility(View.GONE);
                     fragmentBinding.spinGender.setVisibility(View.GONE);
@@ -128,7 +155,7 @@ public class EditSpesificProfileFragment extends Fragment {
                             Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                             fragmentBinding.progressBar.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
-                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+                            getActivity().onBackPressed();
 
                         }
                     });
@@ -136,7 +163,6 @@ public class EditSpesificProfileFragment extends Fragment {
                 case "email":
                     fragmentBinding.tvEditSpesific.setText(getResources().getString(R.string.edit_email));
                     fragmentBinding.tvEdit.setText(getResources().getString(R.string.text_edit_email));
-                    fragmentBinding.etEditSpesific1.setText(u.getEmail());
                     fragmentBinding.tvEdit2.setVisibility(View.GONE);
                     fragmentBinding.etEditSpesific2.setVisibility(View.GONE);
                     fragmentBinding.spinGender.setVisibility(View.GONE);
@@ -163,7 +189,7 @@ public class EditSpesificProfileFragment extends Fragment {
                                             if (task.isSuccessful()) {
                                                 reference.child(user.getUid()).child("email").setValue(fragmentBinding.etEditSpesific1.getText().toString());
                                                 Toast.makeText(getContext(), "Email Changed" + ", Current Email is " + fragmentBinding.etEditSpesific1.getText().toString(), Toast.LENGTH_LONG).show();
-                                                getActivity().getSupportFragmentManager().popBackStackImmediate();
+                                                getActivity().onBackPressed();
                                             }
                                         }
                                     });
@@ -177,7 +203,6 @@ public class EditSpesificProfileFragment extends Fragment {
                 case "phone":
                     fragmentBinding.tvEditSpesific.setText(getResources().getString(R.string.edit_phone_number));
                     fragmentBinding.tvEdit.setText(getResources().getString(R.string.text_edit_phone_number));
-                    fragmentBinding.etEditSpesific1.setText(u.getPhoneNumber());
                     fragmentBinding.tvEdit2.setVisibility(View.GONE);
                     fragmentBinding.etEditSpesific2.setVisibility(View.GONE);
                     fragmentBinding.spinGender.setVisibility(View.GONE);
@@ -193,7 +218,7 @@ public class EditSpesificProfileFragment extends Fragment {
                             Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                             fragmentBinding.progressBar.setVisibility(View.GONE);
                             fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
-                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+                            getActivity().onBackPressed();
                         }
                     });
                     break;
@@ -204,9 +229,6 @@ public class EditSpesificProfileFragment extends Fragment {
                     fragmentBinding.tvEdit2.setVisibility(View.GONE);
                     fragmentBinding.etEditSpesific2.setVisibility(View.GONE);
                     fragmentBinding.spinGender.setVisibility(View.VISIBLE);
-                    if(u.getGender() != null){
-                        fragmentBinding.spinGender.setSelection(u.getGender().equals("Male") ? 0 : 1);
-                    }
                     fragmentBinding.btnConfirm.setOnClickListener(v -> {
                         fragmentBinding.progressBar.setVisibility(View.VISIBLE);
                         fragmentBinding.btnConfirm.setVisibility(View.GONE);
@@ -214,10 +236,11 @@ public class EditSpesificProfileFragment extends Fragment {
                         Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
                         fragmentBinding.progressBar.setVisibility(View.GONE);
                         fragmentBinding.btnConfirm.setVisibility(View.VISIBLE);
-                        getActivity().getSupportFragmentManager().popBackStackImmediate();
+                        getActivity().onBackPressed();
                     });
                     break;
                 case "password":
+                    fragmentBinding.tvEditSpesific.setText(getResources().getString(R.string.change_password));
                     fragmentBinding.editLayout.setVisibility(View.GONE);
                     fragmentBinding.changePasswordLayout.setVisibility(View.VISIBLE);
                     fragmentBinding.btnForgotPassword.setOnClickListener(v -> {
@@ -260,7 +283,7 @@ public class EditSpesificProfileFragment extends Fragment {
                                                 if (task.isSuccessful()) {
                                                     reference.child(user.getUid()).child("password").setValue(fragmentBinding.etNewPassword.getText().toString());
                                                     Toast.makeText(getContext(), "Password Changed", Toast.LENGTH_LONG).show();
-                                                    getActivity().getSupportFragmentManager().popBackStackImmediate();
+                                                    getActivity().onBackPressed();
                                                 }
                                             }
                                         });

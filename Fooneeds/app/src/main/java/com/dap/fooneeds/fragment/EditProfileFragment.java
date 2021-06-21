@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.dap.fooneeds.CategoryActivity;
+import com.dap.fooneeds.LoginActivity;
 import com.dap.fooneeds.MainActivity;
 import com.dap.fooneeds.ProfileActivity;
 import com.dap.fooneeds.R;
@@ -48,6 +50,12 @@ public class EditProfileFragment extends Fragment {
         return editProfileFragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,10 +70,8 @@ public class EditProfileFragment extends Fragment {
             updateUI("phone");
         });
         fragmentBinding.btnEditAddress.setOnClickListener(v -> {
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.profileContainer, EditAddressFragment.newInstance());
-            transaction.addToBackStack(null);
-            transaction.commit();
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            startActivity(intent);
         });
         fragmentBinding.btnEditGender.setOnClickListener(v -> {
             updateUI("gender");
@@ -80,6 +86,13 @@ public class EditProfileFragment extends Fragment {
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        });
+
+        fragmentBinding.btnLogout.setOnClickListener(v -> {
+            mAuth.signOut();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         });
         return fragmentBinding.getRoot();
     }
@@ -99,22 +112,29 @@ public class EditProfileFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString(User.EDIT_USER, type);
         bundle.putParcelable(User.USER_DATA, u);
-        EditSpesificProfileFragment spesificProfileFragment = EditSpesificProfileFragment.newInstance();
-        spesificProfileFragment.setArguments(bundle);
-
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.profileContainer, spesificProfileFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         u = new User();
-        mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         user = mAuth.getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users/" + user.getUid());
+        reference.child("fav").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                fragmentBinding.txtCountSaved.setText(String.valueOf(snapshot.getChildrenCount()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         databaseReference = firebaseDatabase.getReference("users/"+user.getUid());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -9,12 +9,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dap.fooneeds.R;
 import com.dap.fooneeds.adapter.CartAdapter;
 import com.dap.fooneeds.databinding.CheckoutFragmentBinding;
 import com.dap.fooneeds.entity.CartItem;
 import com.dap.fooneeds.entity.Food;
+import com.dap.fooneeds.entity.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +36,7 @@ public class CartCheckoutFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private DatabaseReference reference;
+    private DatabaseReference dbreference;
     private CartAdapter cartAdapter;
 
     private CartCheckoutFragment(){}
@@ -114,7 +118,24 @@ public class CartCheckoutFragment extends Fragment {
         fragmentBinding.tvSubtotal.setText("Rp." + sumSubtotal());
         fragmentBinding.tvShipping.setText("Rp.10.000");
         fragmentBinding.tvTotal.setText("Rp." + String.valueOf(sumSubtotal() + 10000));
+        fragmentBinding.btnCheckout.setOnClickListener(v -> {
+            dbreference.setValue("cod");
+            updateUI();
+        });
         return fragmentBinding.getRoot();
+    }
+
+    private void updateUI(){
+        Bundle bundle = new Bundle();
+        bundle.putString("subtotal", fragmentBinding.tvSubtotal.getText().toString());
+        bundle.putString("total", fragmentBinding.tvTotal.getText().toString());
+        CheckoutFragment checkoutFragment = CheckoutFragment.newInstance();
+        checkoutFragment.setArguments(bundle);
+
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.checkoutContainer, checkoutFragment);
+        transaction.addToBackStack("cart");
+        transaction.commit();
     }
 
     @Override
@@ -122,10 +143,12 @@ public class CartCheckoutFragment extends Fragment {
         super.onStart();
         user = mAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("users/" + user.getUid());
+        dbreference = FirebaseDatabase.getInstance().getReference("users/" + user.getUid() + "/pay");
         fetchCartItem();
     }
 
     private void fetchCartItem() {
+        cartItems.clear();
         reference.child("cart").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
