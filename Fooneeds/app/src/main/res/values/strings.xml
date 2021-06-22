@@ -99,6 +99,8 @@
     <string name="error_login2">Password and Confirm Password don\'t match</string>
     <string name="text_ship">Shipping to</string>
     <string name="text_cod">Cash On Delivery</string>
+    <string name="text_recent">Recent searches</string>
+    <string name="text_popular_product">Popular product</string>
     <string-array name="gender">
         <item>Male</item>
         <item>Female</item>

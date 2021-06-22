@@ -24,10 +24,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView14"
+                android:id="@+id/btn_searchmost"
                 android:layout_width="@dimen/size_button_top"
                 android:layout_height="@dimen/size_button_top"
                 android:layout_weight="1"
+                android:scaleType="fitEnd"
                 app:srcCompat="@drawable/search" />
 
             <ImageView
@@ -35,11 +36,12 @@
                 android:layout_width="@dimen/size_button_top"
                 android:layout_height="@dimen/size_button_top"
                 android:layout_weight="1"
+                android:visibility="gone"
                 app:srcCompat="@drawable/filter" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/txtSaved3"
+            android:id="@+id/txtPopSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_no_button"
@@ -61,7 +63,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtSaved3">
+            app:layout_constraintTop_toBottomOf="@+id/txtPopSearch">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_most_pop"

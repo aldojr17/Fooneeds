@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dap.fooneeds.DetailActivity;
+import com.dap.fooneeds.R;
+import com.dap.fooneeds.SearchActivity;
 import com.dap.fooneeds.adapter.FoodAdapter;
 import com.dap.fooneeds.databinding.PopularSearchFragmentBinding;
 import com.dap.fooneeds.entity.Food;
@@ -55,7 +57,6 @@ public class MostPopularFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("foods");
-        fetchDataFood();
     }
 
     @Nullable
@@ -85,10 +86,19 @@ public class MostPopularFragment extends Fragment {
         fragmentBinding.rvMostPop2.setAdapter(foodAdapter);
         fragmentBinding.rvMostPop.setNestedScrollingEnabled(false);
         fragmentBinding.rvMostPop2.setNestedScrollingEnabled(false);
+        fragmentBinding.btnSearchmost.setOnClickListener(v -> {
+            if(getArguments() != null){
+                getActivity().getSupportFragmentManager().popBackStackImmediate();
+            }else{
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
         return fragmentBinding.getRoot();
     }
 
     public void fetchDataFood(){
+        foods.clear();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -133,6 +143,96 @@ public class MostPopularFragment extends Fragment {
     public void onStart() {
         super.onStart();
         user = mAuth.getCurrentUser();
+        if (getArguments() != null && getArguments().getString("id") != null) {
+            fragmentBinding.txtPopSearch.setText("Search Result");
+            fetchDataSearch(getArguments().getString("id"));
+        }else if(getArguments() != null && getArguments().getString("name") != null){
+            fragmentBinding.txtPopSearch.setText("Search Result");
+            fetchDataSearchFood(getArguments().getString("name"));
+        }else{
+            fragmentBinding.txtPopSearch.setText(getResources().getString(R.string.most_popular));
+            fetchDataFood();
+        }
+    }
+
+    private void fetchDataSearch(String id){
+        foods.clear();
+        String cat = "";
+        if(id.equals("0")){
+            cat = "Dog";
+        }else{
+            cat = "Cat";
+        }
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("foods/" + id + "/products");
+        String finalCat = cat;
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Food food = new Food();
+                    food.setId(dataSnapshot.child("id").getValue(Integer.class));
+                    food.setAge(dataSnapshot.child("age").getValue(String.class));
+                    food.setCover(dataSnapshot.child("cover").getValue(String.class));
+                    food.setDescription(dataSnapshot.child("description").getValue(String.class));
+                    food.setName(dataSnapshot.child("name").getValue(String.class));
+                    food.setPrice(dataSnapshot.child("price").getValue(Integer.class));
+                    food.setStock(dataSnapshot.child("stock").getValue(Integer.class));
+                    food.setCategory(finalCat);
+                    food.setType(dataSnapshot.child("type").getValue(String.class));
+                    foods.add(food);
+                }
+                foodAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void fetchDataSearchFood(String name){
+        foods.clear();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    DatabaseReference keyReference = databaseReference.child(ds.getKey()).child("products");
+                    keyReference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                if(dataSnapshot.child("name").getValue(String.class).toLowerCase().contains(name.toLowerCase())){
+                                    Food food = new Food();
+                                    food.setId(dataSnapshot.child("id").getValue(Integer.class));
+                                    food.setAge(dataSnapshot.child("age").getValue(String.class));
+                                    food.setCover(dataSnapshot.child("cover").getValue(String.class));
+                                    food.setDescription(dataSnapshot.child("description").getValue(String.class));
+                                    food.setName(dataSnapshot.child("name").getValue(String.class));
+                                    food.setPrice(dataSnapshot.child("price").getValue(Integer.class));
+                                    food.setStock(dataSnapshot.child("stock").getValue(Integer.class));
+                                    food.setCategory(ds.child("category").getValue(String.class));
+                                    food.setType(dataSnapshot.child("type").getValue(String.class));
+
+                                    foods.add(food);
+                                }
+                            }
+                            refreshData(foods);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void refreshData(ArrayList<Food> foodArrayList){

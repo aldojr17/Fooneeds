@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dap.fooneeds.DetailActivity;
+import com.dap.fooneeds.SearchActivity;
 import com.dap.fooneeds.adapter.FoodAdapter;
 import com.dap.fooneeds.databinding.PopularSearchFragmentBinding;
 import com.dap.fooneeds.databinding.TabFragmentBinding;
@@ -102,6 +103,10 @@ public class CategoryFragment extends Fragment {
         fragmentBinding.rvData2.setAdapter(foodAdapter);
         fragmentBinding.rvData.setNestedScrollingEnabled(false);
         fragmentBinding.rvData2.setNestedScrollingEnabled(false);
+        fragmentBinding.btnSearchtab.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), SearchActivity.class);
+            startActivity(intent);
+        });
         return fragmentBinding.getRoot();
     }
 

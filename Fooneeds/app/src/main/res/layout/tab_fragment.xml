@@ -23,10 +23,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView14"
+                android:id="@+id/btn_searchtab"
                 android:layout_width="@dimen/size_button_top"
                 android:layout_height="@dimen/size_button_top"
                 android:layout_weight="1"
+                android:scaleType="fitEnd"
                 app:srcCompat="@drawable/search" />
 
             <ImageView
@@ -34,6 +35,7 @@
                 android:layout_width="@dimen/size_button_top"
                 android:layout_height="@dimen/size_button_top"
                 android:layout_weight="1"
+                android:visibility="gone"
                 app:srcCompat="@drawable/filter" />
         </LinearLayout>
 

@@ -25,19 +25,22 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
+                <Button
                     android:id="@+id/btnSearch"
-                    android:layout_width="320dp"
+                    android:layout_width="300dp"
                     android:layout_height="45dp"
+                    android:layout_weight="1"
                     android:background="@drawable/custom_search"
-                    android:drawableStart="@drawable/search"
-                    android:drawablePadding="@dimen/padding_drawable"
-                    android:ems="10"
+                    android:drawableLeft="@drawable/search"
                     android:fontFamily="@font/montserrat"
-                    android:hint="@android:string/search_go"
-                    android:inputType="textPersonName"
                     android:paddingStart="@dimen/padding_start"
-                    android:paddingEnd="@dimen/padding_start" />
+                    android:paddingEnd="@dimen/padding_start"
+                    android:text="@android:string/search_go"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/tertiary_text_light"
+                    android:textSize="14sp"
+                    app:backgroundTint="@null" />
 
                 <ImageView
                     android:id="@+id/btnCart"

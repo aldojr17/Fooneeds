@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/app_margin"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="300dp"
+            android:layout_height="@dimen/height_input_button"
+            android:layout_weight="1"
+            android:background="@drawable/custom_bank"
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="@dimen/padding_start"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:hint="@android:string/search_go"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/padding_start"
+            android:paddingEnd="@dimen/padding_start"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat"
+            android:gravity="right|end"
+            android:text="@android:string/cancel"
+            android:textColor="@android:color/holo_red_dark" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_edit3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_text"
+        android:layout_marginStart="@dimen/margin_input_left_right_bottom"
+        android:layout_marginTop="@dimen/margin_input_left_right_bottom"
+        android:layout_weight="1"
+        android:fontFamily="@font/montserrat"
+        android:gravity="start"
+        android:text="@string/text_recent"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_input_left_right_bottom"
+        android:layout_marginTop="@dimen/margin_content"
+        android:layout_marginRight="@dimen/margin_input_left_right_bottom"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit3" />
+
+    <TextView
+        android:id="@+id/tv_edit4"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_text"
+        android:layout_marginStart="@dimen/margin_input_left_right_bottom"
+        android:layout_marginTop="@dimen/margin_title_to_desc_text"
+        android:layout_weight="1"
+        android:fontFamily="@font/montserrat"
+        android:gravity="start"
+        android:text="@string/text_popular_product"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_popProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit4" />
+</androidx.constraintlayout.widget.ConstraintLayout>

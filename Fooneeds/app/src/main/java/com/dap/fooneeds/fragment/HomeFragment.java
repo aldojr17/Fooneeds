@@ -16,6 +16,7 @@ import com.dap.fooneeds.CategoryActivity;
 import com.dap.fooneeds.CheckoutActivity;
 import com.dap.fooneeds.DetailActivity;
 import com.dap.fooneeds.PopularActivity;
+import com.dap.fooneeds.SearchActivity;
 import com.dap.fooneeds.adapter.FoodAdapter;
 import com.dap.fooneeds.databinding.HomeFragmentBinding;
 import com.dap.fooneeds.entity.Food;
@@ -113,6 +114,11 @@ public class HomeFragment extends Fragment {
         fragmentBinding.btnCats.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CategoryActivity.class);
             intent.putExtra("cat", "Cat");
+            startActivity(intent);
+        });
+
+        fragmentBinding.btnSearch.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), SearchActivity.class);
             startActivity(intent);
         });
         return fragmentBinding.getRoot();
